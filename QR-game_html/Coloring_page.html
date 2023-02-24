@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body onload="myFunction()">
+    <main>
+        <section id="statSection" class="show">
+            <h1>Your Stats!</h1>
+            <div id="sizebar">
+                <div id="0" class="show"></div>
+                <div id="1"class="show"></div>
+                <div id="2"class="show"></div>
+                <div id="3"class="show"></div>
+                <div id="4"class="show"></div>
+                <div id="5"class="show"></div>
+                <div id="6"class="hide"></div>
+            </div>
+            <div id="sizeWord">
+                Size
+                <div id="dead" class="show">Dead</div>
+                <div id="small" class="show">small</div>
+                <div id="medium" class="show">medium</div>
+                <div id="large" class="show">large</div>
+                <div id="colossal" class="show">colossal</div>
+            </div>
+            <p>Water *slider* Land </p>
+            <p>Carnivore *slider* Herbavoir: <span id="dietStat"></span></p>
+            <p>Four-Legs *slider* Two-Legs: <span id="stanceStat"></span></p>
+            <p>Flightless *slider* Flight: <span id="typeStat"></span></p>
+        </section>
+        <section>
+            <jl-coloringbook>
+                <img src="/IMG/swim_dino.jpg">
+            </jl-coloringbook>
+        </section>
+    </main>
+<script src="/js/coloringbook.js"> </script>
+<script src="/js/main.js"> </script>
+</body>
+</html>
