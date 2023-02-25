@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Plants</title>
+</head>
+
+<body>
+    <p id="placeholder"></p>
+    <img id="img_greenD10" src="" width="30%" height="auto"></br>
+    <img id="img_redD8" src="" width="30%" height="auto"></br>
+    <button onclick="clickEvent()">Feed!</button>
+    <!-- I could only get it to work in-line, pls don't hurt me, idr JS anymore :( -->
+    <script>
+        document.getElementById("img_greenD10").src = "greenD10_1.png";
+        document.getElementById("img_redD8").src = "redD8_1.png";
+        var rndNum;
+        var rndNum_prev0;
+        var rndNum_prev1;
+        var rndNum2;
+        var rndNum2_prev0;
+        var rndNum2_prev1;
+        function clickEvent(){
+            var limit = 12; //number of rolls before output
+            for (var i=0;i<=limit;i++) {
+            (function(ind) {
+                setTimeout(function(){
+                    //Player
+                    rndNum = Math.floor(Math.random() * 10) + 1;
+                    while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                        rndNum = Math.floor(Math.random() * 10) + 1; //...and prevent the current roll from landing on them
+                    }
+                    rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                    rndNum_prev0 = rndNum;
+                    if(rndNum == 1){
+                    document.getElementById("img_greenD10").src = "greenD10_1.png";
+                    }
+                    if (rndNum == 2){
+                        document.getElementById("img_greenD10").src = "greenD10_2.png";
+                    }
+                    if (rndNum == 3){
+                        document.getElementById("img_greenD10").src = "greenD10_3.png";
+                    }
+                    if (rndNum == 4){
+                        document.getElementById("img_greenD10").src = "greenD10_4.png";
+                    }
+                    if (rndNum == 5){
+                        document.getElementById("img_greenD10").src = "greenD10_5.png";
+                    }
+                    if (rndNum == 6){
+                        document.getElementById("img_greenD10").src = "greenD10_6.png";
+                    }
+                    if (rndNum == 7){
+                        document.getElementById("img_greenD10").src = "greenD10_7.png";
+                    }
+                    if (rndNum == 8){
+                        document.getElementById("img_greenD10").src = "greenD10_8.png";
+                    }
+                    if (rndNum == 9){
+                        document.getElementById("img_greenD10").src = "greenD10_9.png";
+                    }
+                    if (rndNum == 10){
+                        document.getElementById("img_greenD10").src = "greenD10_0.png";
+                    }
+                    if(ind == limit){
+                        //apply modifiers, play animations, and pass values
+                    }
+                    //Plants
+                    rndNum2 = Math.floor(Math.random() * 8) + 1;
+                    while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                        rndNum2 = Math.floor(Math.random() * 8) + 1; //...and prevent the current roll from landing on them
+                    }
+                    rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                    rndNum2_prev0 = rndNum2;
+                    if(rndNum2 == 1){
+                    document.getElementById("img_redD8").src = "redD8_1.png";
+                    }
+                    if (rndNum2 == 2){
+                        document.getElementById("img_redD8").src = "redD8_2.png";
+                    }
+                    if (rndNum2 == 3){
+                        document.getElementById("img_redD8").src = "redD8_3.png";
+                    }
+                    if (rndNum2 == 4){
+                        document.getElementById("img_redD8").src = "redD8_4.png";
+                    }
+                    if (rndNum2 == 5){
+                        document.getElementById("img_redD8").src = "redD8_5.png";
+                    }
+                    if (rndNum2 == 6){
+                        document.getElementById("img_redD8").src = "redD8_6.png";
+                    }
+                    if (rndNum2 == 7){
+                        document.getElementById("img_redD8").src = "redD8_7.png";
+                    }
+                    if (rndNum2 == 8){
+                        document.getElementById("img_redD8").src = "redD8_8.png";
+                    }
+                    if(ind == limit){
+                        //apply modifiers, play animations, and pass values
+                    }
+                }, (120 * ind)); //speed of rolls
+            })(i);
+            }
+        }
+    </script>
+</body>
+
+</html>
