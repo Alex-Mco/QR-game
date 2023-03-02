@@ -1,0 +1,85 @@
+/*General CSS*/
+.show{
+    display: grid;
+}
+.hide{
+    display: none;
+}
+body{
+    background-color: rgb(255, 170, 0);
+    text-align: center;
+
+}
+/*Evolve QR sections CSS*/
+#evolve_sections{
+    font-size: 20px;
+}
+#EvolveBtn{
+    width: 80%; 
+    border: 2px solid black;
+    box-shadow: 3px 3px;
+    margin: 10px 0px; 
+    padding: 20px; 
+    font-size: 20px; 
+    background-color: rgb(231, 80, 47);
+}
+#stayBtn{
+    width: 80%; 
+    border: 2px solid black; 
+    box-shadow: 3px 3px;
+    margin: 10px 0px;   
+    padding: 20px; 
+    font-size: 20px; 
+    background-color:rgb(161, 161, 161);
+}
+/*Coloring page CSS*/
+#sizebar{
+    display: grid;
+    grid-template-columns: repeat(28, 1fr);
+    background-color: red;
+    border: 2px solid black;
+}
+#sizeWord{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr)
+}
+#sizebar > *{
+    background-color: green;
+    padding: 5px 1px;
+}
+/*Mass extinction CSS*/
+.massExtinction{
+    display: grid;
+    grid-template-columns: auto;
+    gap: 20px;
+}
+.StatSection{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+.Carnivore{
+    display: grid;
+    gap: 20px;
+}
+.sizeSelect{
+    grid-column: 1/-1;
+}
+.surviveBtn{
+    width: 80%; 
+    border: 2px solid black; 
+    box-shadow: 3px 3px;
+    margin: 10px 0px; 
+    padding: 20px; 
+    font-size: 20px; 
+    background-color: rgb(231, 80, 47);
+}
+.nosurviveBtn{
+    width: 80%; 
+    border: 2px solid black; 
+    box-shadow: 3px 3px;
+    margin: 10px 0px;   
+    padding: 20px; 
+    font-size: 20px; 
+    background-color:rgb(161, 161, 161);
+}

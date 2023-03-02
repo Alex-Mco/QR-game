@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mass Extinction</title>
+    </head>
+    <body>
+        <main class="massExtinction">
+            <section>
+                <p>
+                    Mass extinction events are when a majority of biodiversity on Earth is lost. 
+                    In each of the “Big Five” mass extinctions, 70-90% of all animal species perished. 
+                    Animals that survive tend to be small, weighing less than 55 pounds, or have low metabolic 
+                    rates that enable them to survive extended periods of time without food. For example, some 
+                    living crocodilians – whose ancestors survived the end-Cretaceous mass extinction – only need 
+                    to eat once a year. Tap Evolve to see if your animal can survive the mass extinction!
+                </p>
+            </section>
+            <section>
+                <button type="button" class="surviveBtn" style="width:100%">Evolve</button>
+                <button type="button" class="nosurviveBtn" style="width:100%" onclick="location.href='./coloring_page.html'">Go back</button>
+            </section>
+            <section id="MassExtinctionGame" class="hide/show">
+                <section id="Herbivore" class="hide">
+                    Your animal has lost size due to the scarcity of food!
+                </section>
+                <section class="Carnivore" class="show">
+                    With so little food available, you will need to turn on each other.
+                    Enter the stats of another animal in your group to see if you can attack it!
+                    <section class="StatSection">
+                        <div class="sizeSelect">
+                            <p>Select Size:</p>
+                            <input type="radio" id="small" name="size" value="small"></input>
+                            <label for="small">Small</label>
+                            <input type="radio" id="medium" name="size" value="medium"></input>
+                            <label for="medium">Medium</label>
+                            <input type="radio" id="large" name="size" value="large"></input>
+                            <label for="large">Large</label>
+                            <input type="radio" id="colossal" name="size" value="colossal"></input>
+                            <label for="colossal">Colossal</label>
+                            
+                        </div>
+                        <div>
+                            <p>Water or Land?</p>
+                            <input type="radio" id="water" name="habitat" value="water"></input>
+                            <label for="water">Water</label>
+                            <input type="radio" id="land" name="habitat" value="Land"></input>
+                            <label for="land">Land</label>
+                        </div>
+                        <div>
+                            <p>Carnivore or Herbivore?</p>
+                            <input type="radio" id="Carnivore" name="diet" value="Carnivore"></input>
+                            <label for="Carnivore">Carnivore</label>
+                            <input type="radio" id="Herbivore" name="diet" value="Herbivore"></input>
+                            <label for="Herbivore">Herbivore</label>
+                        </div>
+                        <div>
+                            <p>Flightless or Flying?</p>
+                            <input type="radio" id="Flightless" name="flying" value="Flightless"></input>
+                            <label for="Flightless">Flightless</label>
+                            <input type="radio" id="Flying" name="flying" value="Flying"></input>
+                            <label for="Flying">Flying</label>
+                        </div>
+                        <div>
+                            <p>Is the animal camouflaged?</p>
+                            <p>(Does your animal blend in with the exhibit?)</p>
+                            <input type="radio" id="camo" name="camo" value="Yes"></input>
+                            <label for="camo">Yes</label>
+                            <input type="radio" id="NoCamo" name="camo" value="No"></input>
+                            <label for="NoCamo">No</label>
+                        </div>
+                </section>
+            </section>
+            </section>
+        </main>
+    </body>
+</html>
