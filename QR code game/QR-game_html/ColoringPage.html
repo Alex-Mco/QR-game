@@ -3,66 +3,74 @@
 <html>
 <head>
     <link rel="stylesheet" href="/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet"> 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
-<body onload="myFunction()">
+<body onload="ColoringPageChange()">
     <main>
         <section id="statSection" class="show">
             <h1>Your Stats!</h1>
             Size:
-            <div id="sizebar">
-                <div id="0" class="show"></div>
-                <div id="1"class="show"></div>
-                <div id="2"class="show"></div>
-                <div id="3"class="show"></div>
-                <div id="4"class="show"></div>
-                <div id="5"class="show"></div>
-                <div id="6"class="show"></div>
-                <div id="7" class="show"></div>
-                <div id="8"class="show"></div>
-                <div id="9"class="show"></div>
-                <div id="10"class="show"></div>
-                <div id="11"class="show"></div>
-                <div id="12"class="show"></div>
-                <div id="13"class="show"></div>
-                <div id="14" class="show"></div>
-                <div id="15"class="show"></div>
-                <div id="16"class="show"></div>
-                <div id="17"class="show"></div>
-                <div id="18"class="show"></div>
-                <div id="19"class="show"></div>
-                <div id="20"class="show"></div>
-                <div id="21" class="show"></div>
-                <div id="22"class="show"></div>
-                <div id="23"class="show"></div>
-                <div id="24"class="show"></div>
-                <div id="25"class="show"></div>
-                <div id="26"class="show"></div>
-                <div id="27"class="show"></div>
-                <div id="28" class="show"></div>
-            </div>
+            <ul id="sizebar">
+                <li id="s0" class="show"></li>
+                <li id="s1"class="show"></li>
+                <li id="s2"class="show"></li>
+                <li id="s3"class="show"></li>
+                <li id="s4"class="show"></li>
+                <li id="s5"class="show"></li>
+                <li id="s6"class="show"></li>
+                <li id="s7" class="show"></li>
+                <li id="s8"class="show"></li>
+                <li id="s9"class="show"></li>
+                <li id="s10"class="show"></li>
+                <li id="s11"class="show"></li>
+                <li id="s12"class="show"></li>
+                <li id="s13"class="show"></li>
+                <li id="s14" class="show"></li>
+                <li id="s15"class="show"></li>
+                <li id="s16"class="show"></li>
+                <li id="s17"class="show"></li>
+                <li id="s18"class="show"></li>
+                <li id="s19"class="show"></li>
+                <li id="s20"class="show"></li>
+                <li id="s21" class="show"></li>
+                <li id="s22"class="show"></li>
+                <li id="s23"class="show"></li>
+                <li id="s24"class="show"></li>
+                <li id="s25"class="show"></li>
+                <li id="s26"class="show"></li>
+                <li id="s27"class="show"></li>
+                <li id="s28" class="show"></li>
+            </ul>
             <div id="sizeWord">
                 <div id="dead" class="show">Dead</div>
-                <div id="small" class="show">small</div>
-                <div id="medium" class="show">medium</div>
-                <div id="large" class="show">large</div>
-                <div id="colossal" class="show">colossal</div>
+                <div id="small" class="show">Small</div>
+                <div id="medium" class="show">Medium</div>
+                <div id="large" class="show">Large</div>
+                <div id="colossal" class="show">Colossal</div>
             </div>
             <div>
-                <p><span id="water">Water</span><span id="land"> Land</span></p>
-                <p><span id="Carnivore">Carnivore</span> <span id="Herbivore"> Herbivore</span></p>
-                <p><span id="Four-legs">Four-Legs</span> <span id="Two-legs"> Two-Legs</span></p>
-                <p><span id="Flightless">Flightless</span> <span id="Flight"> aFlight</span></p>
+                <p id="testPara"></p>
+            </div>
+            <div>
+                <p id="habitatcolor"><span id="water">Water</span><span id="landcolor"> Land</span></p>
+                <p id="dietcolor"><span id="Carnivore">Carnivore</span> <span id="Herbivore"> Herbivore</span></p>
+                <p id="legscolor"><span id="Four-legs">Four-Legs</span> <span id="Two-legs"> Two-Legs</span></p>
+                <p id="flightcolor"><span id="Flightless">Flightless</span> <span id="Flight"> Flight</span></p>
             </div>
         </section>
+        <div>
+        </div>
         <section>
-            <jl-coloringbook>
-                <img class="coloringPage" src="/IMG/swim_dino.jpg">
+            <jl-coloringbook style="background-color:white;">
+                <img id="coloringPagePicture" src="/IMG/coloringPages/cpA_Keichousaurus.png">
+                <!--This is the problem with switching the coloring book, somehow the javascripts are clashing-->
             </jl-coloringbook>
         </section>
     </main>
-<script src="/js/coloringbook.js"> </script>
-<script src="/js/main.js"> </script>
+<script src="/js/coloringbook.js"></script>
+<script src="/js/main.js"></script>
+<script src="jquery-3.6.3.min.js"></script>
 </body>
 </html>

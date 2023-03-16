@@ -3,12 +3,20 @@
 <html>
     <head>
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mass Extinction</title>
     </head>
     <body>
-        <main class="massExtinction">
+        <main id="evolve_sections">
             <section>
+                <h1>
+                    Mass Extinction
+                </h1>
+                <p id="SaveColorPage">
+                    <b>Make sure to save your coloring page before evolving, 
+                    otherwise it will be lost!</b>
+                </p>
                 <p>
                     Mass extinction events are when a majority of biodiversity on Earth is lost. 
                     In each of the “Big Five” mass extinctions, 70-90% of all animal species perished. 
@@ -51,9 +59,9 @@
                         </div>
                         <div>
                             <p>Carnivore or Herbivore?</p>
-                            <input type="radio" id="Carnivore" name="diet" value="Carnivore"></input>
+                            <input type="radio" id="dietCarnivore" name="diet" value="Carnivore"></input>
                             <label for="Carnivore">Carnivore</label>
-                            <input type="radio" id="Herbivore" name="diet" value="Herbivore"></input>
+                            <input type="radio" id="dietHerbivore" name="diet" value="Herbivore"></input>
                             <label for="Herbivore">Herbivore</label>
                         </div>
                         <div>
@@ -76,4 +84,6 @@
             </section>
         </main>
     </body>
+    <script src="/js/main.js"> </script>
+    <script src="jquery-3.6.3.min.js"></script>
 </html>

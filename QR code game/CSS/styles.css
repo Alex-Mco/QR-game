@@ -5,10 +5,13 @@
 .hide{
     display: none;
 }
+h1{
+    font-family: 'IM Fell English SC', serif;
+    font-size: 30px;
+}
 body{
-    background-color: rgb(255, 170, 0);
+    background-color: #D97823;
     text-align: center;
-
 }
 /*Evolve QR sections CSS*/
 #evolve_sections{
@@ -21,34 +24,173 @@ body{
     margin: 10px 0px; 
     padding: 20px; 
     font-size: 20px; 
-    background-color: rgb(231, 80, 47);
+    background-color: #F2D5C4;
 }
 #stayBtn{
     width: 80%; 
     border: 2px solid black; 
+    color: white;
     box-shadow: 3px 3px;
     margin: 10px 0px;   
     padding: 20px; 
     font-size: 20px; 
-    background-color:rgb(161, 161, 161);
+    background-color:#011C26;
+}
+#saveColorPage{
+    font-size: 25px;
 }
 /*Coloring page CSS*/
 #sizebar{
     display: grid;
-    grid-template-columns: repeat(28, 1fr);
     background-color: red;
+    grid-auto-flow: column;
+    grid-gap: 0px;
+    margin: 5px;
     border: 2px solid black;
+    list-style-type: none;
+}
+/*all the different columns for size bar*/
+#s0{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s1{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s2{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s3{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s4{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s5{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s6{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s7{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s8{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s9{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s10{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s11{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s12{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s13{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s14{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s15{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s16{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s17{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s18{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s19{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s20{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s21{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s22{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s23{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s24{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s25{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s26{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s27{
+    background-color: red;
+    padding: 5px 1px;
+}
+#s28{
+    background-color: red;
+    padding: 5px 1px;
 }
 #sizeWord{
     display: grid;
     grid-template-columns: repeat(5, 1fr)
 }
-#sizebar > *{
-    background-color: green;
-    padding: 5px 1px;
+#habitatcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#landcolor{
+    font-weight: bolder;
+}
+#dietcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
+}
+#legscolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
+}
+#flightcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr)
 }
 /*Mass extinction CSS*/
-.massExtinction{
+#massExtinction{
     display: grid;
     grid-template-columns: auto;
     gap: 20px;
@@ -58,7 +200,7 @@ body{
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
-.Carnivore{
+.dietCarnivore{
     display: grid;
     gap: 20px;
 }
@@ -82,4 +224,38 @@ body{
     padding: 20px; 
     font-size: 20px; 
     background-color:rgb(161, 161, 161);
+}
+/*Feeding game CSS*/
+#feedingBtn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#feedingBtn > *{
+    padding:10px;
+    margin: 5px;
+}
+/*Dice game CSS*/
+#dicePara{
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(2, 1fr)
+}
+#img_greenD6{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    float: right;
+    width:"50%";
+    height:"auto";
+}
+#img_redD6{
+    grid-column-start: 2;
+    grid-column-end: 3;
+
+}
+#diceBtn{
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+    grid-column-start: 1;
+    grid-column-end: 3;
 }

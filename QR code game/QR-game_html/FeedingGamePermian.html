@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Feeding Game Permian</title>
+    </head>
+    <body onload="FeedingGameLoad();FeedingPermian()">
+        <main>
+            <h1> Whats for Munching? </h1>
+            <section id="feedHerbivore" >
+                <p id="permianHerbivore">
+                    Time to feed! Lycopod plants and basal conifers thrive in the lush Permian swamps. 
+                    Plants here are abundant, but are not as nutritious as the fruiting varieties that 
+                    will evolve much later in the Cretaceous period.
+                </p>
+                <div id="feedingBtn">
+                    <button type="button" class="OptionA">plant name 1</button>
+                    <button type="button" class="OptionB">plant name 1</button>
+                    <button type="button" class="OptionC">plant name 1</button>
+                    <button type="button" class="OptionD">plant name 1</button>
+                </div>
+            </section>
+            <section id="feedCarnivore" class="show">
+                <h2> Time to feed! </h2>
+                <p id="smallCarnivore" class="show">
+                    As a small carnivore, you are highly specialized to hunt other small prey.
+                </p>
+                <p id="mediumCarnivore" class="hide">
+                    As a medium carnivore, you are best adapted to hunt smaller prey or prey 
+                    your own size. While you may use pack hunting or ambush to bring down prey 
+                    larger than yourself, it is difficult and dangerous.
+                </p>
+                <p id="largeCarnivore" class="hide">
+                    As a large carnivore, you are best adapted to hunt other large animals. 
+                    Small prey is nimble and difficult to catch, while colossal prey is too 
+                    formidable to risk.
+                </p>
+                <p id="colossalCarnivore" class="hide">
+                    As a colossal carnivore, you prefer to feed on a wide array of smaller 
+                    animals. While you are capable of bringing down any animal, colossal prey 
+                    is usually not worth the risk. This feeding strategy is taken to the extreme 
+                    in baleen whales – the largest animal on Earth is sustained by eating billions 
+                    of tiny krill.
+                </p>
+                <p>
+                    Try to find these animals in the gallery to attack them!
+                </p>
+                <div id="feedingBtn">
+                    <button type="button" id="permianA" class="buttonA" onclick="SmallFeeding()">A - Attack!</button>
+                    <button type="button" id="permianB" class="buttonB" onclick="MediumFeeding()">B - Attack!</button>
+                    <button type="button" id="permianC" class="buttonC" onclick="LargeFeeding()">C - Attack!</button>
+                    <button type="button" id="permianD" class="buttonD" onclick="ColossalFeeding()">D - Attack!</button>
+                </div>
+            </section>
+        </main>
+    </body>
+    <script src="/js/main.js"> </script>
+    <script src="jquery-3.6.3.min.js"></script>
+</html>
