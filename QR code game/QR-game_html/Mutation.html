@@ -3,32 +3,35 @@
 <html>
     <head>
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mutation</title>
     </head>
-    <body>
+    <body onload="CheckLocal()">
         <main id="evolve_sections">
             <section>
                 <h1>
                     Mutation
                 </h1>
-                <p style="font-size: 25px;">
+                <p id="SaveColorPage">
                     <b>Make sure to save your coloring page before evolving, 
                     otherwise it will be lost!</b>
                 </p>
             </section>
             <section>
                 <p>
-                    While evolution has trends driven by natural selection, it is caused 
-                    by random mutation. An individual animal may have beneficial or harmful 
-                    mutations, which will affect its chances of survival and reproduction.
+                    While evolution has trends driven by natural selection, it is the result of
+                     random mutations. An individual animal may have beneficial or harmful 
+                    mutations, which will affect its chances of survival and reproduction. Animals with
+                    adaptive traits pass on their genes and the population as a whole will evolve
+                    to better survive its environment... or perish trying.
                     <br><br>Tap Evolve to see what random mutations affect your animal!
                 </p>
-                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%">Evolve</button>
-                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="location.href='./ColoringPage.html'">Stay</button>
+                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%" onclick="location.href='./MutationGame.html'">Evolve</button>
+                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="ReturnToColoringPage()">Stay</button>
             </section>
         </main>
-    <script src="/js/coloringbook.js"> </script>
     <script src="/js/main.js"> </script>
     </body>
 </html>

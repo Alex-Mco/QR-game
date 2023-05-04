@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mass Extinction Form</title>
+    </head>
+    <body onload="CheckLocal(); MassExtinctionSize(); MassExtinctionFormHabitat(); MassExtinctionDiet(); MassExtinctionFlight(); MassExtinctionCamo();">
+        <main>
+            <section id="MassExtinctionGame" class="hide/show">
+    <section id="Herbivore" class="hide">
+        Your animal has lost size due to the scarcity of food!
+    </section>
+    <section class="Carnivore" class="show">
+        With so little food available, you will need to turn on each other.
+        Enter the stats of another animal in your group to see if you can attack it!
+        <section class="StatSection">
+            <div id="sizeSelect">
+                <p id="FormHeaders"><b>Select Size:</b></p>
+                <input type="radio" id="small" name="size" value="Small" onclick="MassExtinctionSize()"></input>
+                <label for="small">Small</label>
+                <input type="radio" id="medium" name="size" value="Medium" onclick="MassExtinctionSize()"></input>
+                <label for="medium">Medium</label>
+                <input type="radio" id="large" name="size" value="Large" checked onclick="MassExtinctionSize()"></input>
+                <label for="large">Large</label>
+                <input type="radio" id="colossal" name="size" value="Colossal" onclick="MassExtinctionSize()"></input>
+                <label for="colossal">Colossal</label>
+                <div>
+                    <p id="ModifierSize"></p>
+                </div>
+                
+            </div>
+            <div id="habitatSelect">
+                <p id="FormHeaders"><b>Water or Land?</b></p>
+                <p id="ModifierWL"></p>
+                <div>
+                    <input type="radio" id="water" name="habitat" value="Water" checked onclick="MassExtinctionFormHabitat()"></input>
+                    <label for="water">Water</label>
+                </div>
+                <div>
+                    <input type="radio" id="land" name="habitat" value="Land" onclick="MassExtinctionFormHabitat()"></input>
+                    <label for="land">Land</label>
+                </div>
+            </div>
+            <div id="dietSelect">
+                <p id="FormHeaders"><b>Carnivore or Herbivore?</b></p>
+                <p id="ModifierCH"></p>
+                <div>
+                    <input type="radio" id="dietCarnivore" name="diet" value="Carnivore" checked onclick="MassExtinctionDiet()"></input>
+                    <label for="Carnivore">Carnivore</label>
+                </div>
+                <div>
+                    <input type="radio" id="dietHerbivore" name="diet" value="Herbivore" onclick="MassExtinctionDiet()"></input>
+                    <label for="Herbivore">Herbivore</label>
+                </div>
+            </div>
+            <div  id="flightSelect">
+                <p id="FormHeaders"><b>Flightless or Flying?</b></p>
+                <p id="ModifierFY"></p>
+                <div>
+                    <input type="radio" id="Flightless" name="flight" value="Flightless" checked onclick="MassExtinctionFlight()"></input>
+                    <label for="Flightless">Flightless</label>
+                </div>
+                <div>
+                    <input type="radio" id="Flying" name="flight" value="Flying" onclick="MassExtinctionFlight()"></input>
+                    <label for="Flying">Flying</label>
+                </div>
+            </div>
+            <div  id="camoSelect">
+                <p id="FormHeaders"><b>Is The Animal Camouflaged?</b></p>
+                <p>(Does your animal blend in with the exhibit?)<br></p>
+                <p id="ModifierCam"></p>
+                <div>
+                    <input type="radio" id="camo" name="camo" value="Yes" onclick="MassExtinctionCamo()"></input>
+                    <label for="camo">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" id="NoCamo" name="camo" value="No" checked onclick="MassExtinctionCamo()"></input>
+                    <label for="NoCamo">No</label>
+                </div>
+            </div>
+        </section>
+        <div id="submitBtnAttack">
+            <button type="button" id="submitBtn" onclick="submitMassExtinctionForm()">Attack!</button>
+        </div>
+        <div>
+            <p id="animalTooBig"></p>
+        </div>
+</section>
+        </main>
+    </body>
+    <script src="/js/main.js"> </script>
+</html>
+
+
+
+

@@ -3,15 +3,18 @@
 <html>
     <head>
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Island Rule</title>
     </head>
-    <body>
+    <body onload="CheckLocal()">
         <main id="evolve_sections">
             <section>
                 <h1>
                     Island Rule
                 </h1>
-                <p style="font-size: 25px;">
+                <p id="SaveColorPage">
                     <b>Make sure to save your coloring page before evolving, 
                     otherwise it will be lost!</b>
                 </p>
@@ -19,20 +22,19 @@
             <section>
                 <p>
                     Island Rule states how animals change in response to being isolated in 
-                    island environments. Small animals evolve larger on islands when isolated 
-                    from their predators. Many flying animals also become flightless to conserve 
+                    island environments. Many flying animals also become flightless to conserve 
                     energy. New Zealand’s Kākāpō, the world’s only flightless parrot, or the extinct 
-                    dodo bird are examples of this. In contrast, large animals evolve smaller in 
+                    dodo bird are examples of this. Small animals evolve larger on islands when isolated 
+                    from their predators. In contrast, large animals evolve smaller in 
                     response to limited food supply. This specimen of a dwarf <i>Elephas</i> native to 
                     Sicily and Malta shows a large bodied animal that has evolved smaller due to Island Rule.
 
                     <br><br>Tap Evolve to see how Island Rule affects your animal!
                 </p>
-                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%">Evolve</button>
-                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="location.href='./ColoringPage.html'">Stay</button>
+                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%" onclick="IslandRuleChange()">Evolve</button>
+                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="ReturnToColoringPage()">Stay</button>
             </section>
         </main>
-    <script src="/js/coloringbook.js"> </script>
     <script src="/js/main.js"> </script>
     </body>
 </html>

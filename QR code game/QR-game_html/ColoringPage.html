@@ -3,66 +3,53 @@
 <html>
 <head>
     <link rel="stylesheet" href="/CSS/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title>Coloring Page</title>
 </head>
-<body onload="myFunction()">
+<body onload="sizeBarChange()">
     <main>
-        <section id="statSection" class="show">
-            <h1>Your Stats!</h1>
-            Size:
-            <div id="sizebar">
-                <div id="0" class="show"></div>
-                <div id="1"class="show"></div>
-                <div id="2"class="show"></div>
-                <div id="3"class="show"></div>
-                <div id="4"class="show"></div>
-                <div id="5"class="show"></div>
-                <div id="6"class="show"></div>
-                <div id="7" class="show"></div>
-                <div id="8"class="show"></div>
-                <div id="9"class="show"></div>
-                <div id="10"class="show"></div>
-                <div id="11"class="show"></div>
-                <div id="12"class="show"></div>
-                <div id="13"class="show"></div>
-                <div id="14" class="show"></div>
-                <div id="15"class="show"></div>
-                <div id="16"class="show"></div>
-                <div id="17"class="show"></div>
-                <div id="18"class="show"></div>
-                <div id="19"class="show"></div>
-                <div id="20"class="show"></div>
-                <div id="21" class="show"></div>
-                <div id="22"class="show"></div>
-                <div id="23"class="show"></div>
-                <div id="24"class="show"></div>
-                <div id="25"class="show"></div>
-                <div id="26"class="show"></div>
-                <div id="27"class="show"></div>
-                <div id="28" class="show"></div>
-            </div>
-            <div id="sizeWord">
-                <div id="dead" class="show">Dead</div>
-                <div id="small" class="show">small</div>
-                <div id="medium" class="show">medium</div>
-                <div id="large" class="show">large</div>
-                <div id="colossal" class="show">colossal</div>
-            </div>
-            <div>
-                <p><span id="water">Water</span><span id="land"> Land</span></p>
-                <p><span id="Carnivore">Carnivore</span> <span id="Herbivore"> Herbivore</span></p>
-                <p><span id="Four-legs">Four-Legs</span> <span id="Two-legs"> Two-Legs</span></p>
-                <p><span id="Flightless">Flightless</span> <span id="Flight"> aFlight</span></p>
-            </div>
-        </section>
+        <h1 id="animalTitle">Animal Title</h1>
         <section>
-            <jl-coloringbook>
-                <img class="coloringPage" src="/IMG/swim_dino.jpg">
+            <jl-coloringbook style="background-color:white;">
+                <img id="coloringPagePicture">
             </jl-coloringbook>
         </section>
+        <section id="statSection" class="show">
+            <div id="sizeBarDiv">
+                <p id= "SizeText">Size:</p>
+                <img class="sizeBarIMG" src="/IMG/sizebar/sizebar_7.png">
+                <div id="Sizes">
+                    <p id="Dead" class="hide">Dead</p>
+                    <p id="Small" class="hide">Small</p>
+                    <p id="Medium" class="hide">Medium</p>
+                    <p id="Large" class="hide">Large</p>
+                    <p id="Colossal" class="hide">Colossal</p>
+                </div>
+            </div>
+            <div id="statsWord">
+                <div id="habitatcolor">
+                    <p id="Water">Water</p>
+                    <p id="Land"> Land</p>
+                </div>
+                <div id="dietcolor">
+                    <p id="Carnivore">Carnivore</p>
+                    <p id="Herbivore"> Herbivore</p>
+                </div>
+                <div id="legscolor">
+                    <p id="Four-Legs">Four-Legs</p>
+                    <p id="Two-Legs"> Two-Legs</p>
+                </div>
+                <div id="flightcolor">
+                    <p id="Flightless">Flightless</p>
+                    <p id="Flighted"> Flighted</p>
+                </div>
+            </div>
+        </section>
     </main>
-<script src="/js/coloringbook.js"> </script>
 <script src="/js/main.js"> </script>
+<script src="/js/coloringbook.js"></script>
 </body>
 </html>

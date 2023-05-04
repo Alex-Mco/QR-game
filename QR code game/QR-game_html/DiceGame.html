@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dice Game</title>
+    </head>
+    <main>
+        <body onload="DiceGameChange()">
+            <div id="diceName">
+                <p id="youName">You</p>
+                <br>
+                <p id="themName">Prey</p>
+            </div>
+            <div id="dicePara">
+                <img id="img_green" src="/IMG/dice/greenD6_1.png" width="100%">
+                <img id="slash1" src="/IMG/dice/slash2.png" class="hide">
+                <p>VS</p>
+                <img id="img_red" src="/IMG/dice/redD6_1.png" width="100%">
+                <img id="slash2" src="/IMG/dice/slash2.png" class="hide">
+            </div>
+            <div id="diceMod">
+                <p id="youMod"></p>
+                <br>
+                <p id="themMod"></p>
+            </div>
+            <button id="diceBtn" onclick="DiceGameCarnivore()">Attack!</button>
+            <!-- fix dicegame CheckDead() function after dice game-->
+        <script src="/js/main.js"> </script>
+        </body>
+    </main>
+</html>

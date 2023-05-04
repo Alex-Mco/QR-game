@@ -3,36 +3,37 @@
 <html>
     <head>
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Vertebrate Land Invasion</title>
     </head>
-    <body>
+    <body onload="CheckLocal()">
         <main id="evolve_sections">
             <section>
                 <h1>
                     Vertebrate Land Invasion
                 </h1>
-                <p style="font-size: 25px;">
+                <p id="SaveColorPage">
                     <b>Make sure to save your coloring page before evolving, 
                     otherwise it will be lost!</b>
                 </p>
             </section>
             <section>
                 <p>
-                    In the late Devonian period, vertebrates such as Tiktaalik and Acanthostega 
+                    In the late Devonian period, vertebrates such as <i>Tiktaalik</i> and <i>Acanthostega</i> 
                     evolved legs that allowed them to colonize the land. Fish had already evolved 
                     lungs in response to oxygen-depleted ocean conditions and to maintain buoyancy 
-                    in the water, but other adaptations such as neck mobility and hard-shelled eggs 
-                    were also critical to fully colonizing the new land environments.
+                    in the water, but other adaptations, such as neck mobility and hard-shelled eggs, 
+                    were also critical to fully colonizing the new terrestrial environments.
 
                     <br><br>Tap Evolve to become a land animal!
 
                 </p>
-                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%">Evolve</button>
-                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="location.href='./ColoringPage.html'">Stay</button>
+                <button type="button" id="EvolveBtn" class="EvolveBtn" style="width: 100%" onclick="VertebrateLandInvasionChange()">Evolve</button>
+                <button type="button" id="stayBtn" class="stayBtn" style="width: 100%" onclick="ReturnToColoringPage()">Stay</button>
             </section>
         </main>
-    <script src="/js/coloringbook.js"> </script>
     <script src="/js/main.js"> </script>
     </body>
 </html>

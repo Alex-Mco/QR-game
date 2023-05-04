@@ -3,16 +3,18 @@
 <html>
     <head>
         <link rel="stylesheet" href="/CSS/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Green Planet</title>
     </head>
-    <body>
+    <body onload="CheckLocal()">
         <main id="evolve_sections">
             <section>
                 <h1>
                     Green Planet
                 </h1>
-                <p style="font-size: 25px;">
+                <p id="SaveColorPage">
                     <b>Make sure to save your coloring page before evolving, 
                     otherwise it will be lost!</b>
                 </p>
@@ -20,20 +22,19 @@
             <section>
                 <p>
                     Plants are an abundant food source, but they are difficult to digest. 
-                    Unlike animals, plants have tough cellular walls. Many have evolved 
-                    defenses such as thorns and poison to deter animals from eating them. 
-                    Grasses have a silica content 10-20 times higher than other dicot plants, 
-                    making them highly abrasive and damaging to teeth. Adaptations such as blunt, 
-                    grinding teeth; complex stomachs; regurgitation; and swallowing stomach stones 
-                    (gastroliths) aid herbivores in breaking down plant material.
+                    Unlike animals, plants have thick cellular walls. Many have evolved 
+                    defenses, such as thorns and poison, to deter animals from eating them. 
+                    Even unassuming plants, like grasses, have a silica content 10-20 times 
+                    higher than other dicot plants: making them highly abrasive and damaging to teeth.
+                     Adaptations such as blunt, grinding teeth; complex stomachs; regurgitation; 
+                     and swallowing stomach stones (gastroliths) aid herbivores in breaking down tough plant material.
 
                     <br><br>Tap Evolve to become a herbivore!
                 </p>
-                <button type="button" id="EvolveBtn" class="EvolveBtn">Evolve</button>
-                <button type="button" id="stayBtn" class="stayBtn" onclick="location.href='./ColoringPage.html'">Stay</button>
+                <button type="button" id="EvolveBtn" class="EvolveBtn" onclick="GreenPlanetChange()">Evolve</button>
+                <button type="button" id="stayBtn" class="stayBtn" onclick="ReturnToColoringPage()">Stay</button>
             </section>
         </main>
-    <script src="/js/coloringbook.js"> </script>
     <script src="/js/main.js"> </script>
     </body>
 </html>
