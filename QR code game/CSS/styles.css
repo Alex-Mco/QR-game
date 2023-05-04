@@ -5,10 +5,43 @@
 .hide{
     display: none;
 }
+h1{
+    font-family: 'IM Fell English SC', serif;
+    font-size: 35px;
+}
 body{
-    background-color: rgb(255, 170, 0);
+    background-color: #D97823;
     text-align: center;
-
+}
+div{
+    font-family: 'Lato', Helvetica, sans-serif;
+    font-size: 25px;
+}
+p{
+    font-family: 'Lato', Helvetica, sans-serif;
+    font-size: 20px;
+}
+/*#youdiedimg{
+    width: 100%;
+    height: auto;
+}*/
+#startBtn{
+    margin: 10px 0px; 
+    padding: 10px;
+    font-size: 15px;
+    box-shadow: 3px 3px;
+    color: white;
+    border: 2px solid black;
+    background-color:#011C26;
+}
+#tryAgainBtn{
+    margin: 10px 0px; 
+    padding: 10px;
+    font-size: 15px;
+    box-shadow: 3px 3px;
+    color: white;
+    border: 2px solid black;
+    background-color:#011C26;
 }
 /*Evolve QR sections CSS*/
 #evolve_sections{
@@ -21,49 +54,119 @@ body{
     margin: 10px 0px; 
     padding: 20px; 
     font-size: 20px; 
-    background-color: rgb(231, 80, 47);
+    background-color: #A6401B;
 }
 #stayBtn{
     width: 80%; 
     border: 2px solid black; 
+    color: white;
     box-shadow: 3px 3px;
     margin: 10px 0px;   
     padding: 20px; 
     font-size: 20px; 
-    background-color:rgb(161, 161, 161);
+    background-color:#011C26;
+}
+#saveColorPage{
+    font-size: 25px;
 }
 /*Coloring page CSS*/
-#sizebar{
-    display: grid;
-    grid-template-columns: repeat(28, 1fr);
-    background-color: red;
-    border: 2px solid black;
+
+#sizeBarDiv{
+    display: flex;
+    flex-wrap: wrap;
 }
-#sizeWord{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr)
+.sizeBarIMG{
+    width: 98%;
+    display: block;
+    margin: auto;
 }
-#sizebar > *{
-    background-color: green;
-    padding: 5px 1px;
+#SizeText{
+    margin: 5px;
+}
+#Sizes > *{
+    margin: 5px;
+}
+#habitatcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#dietcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#legscolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#flightcolor{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#Water{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size:  110px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Land{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 110px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Carnivore{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Herbivore{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Four-Legs{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Two-Legs{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Flightless{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
+}
+#Flighted{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 120px;
+    padding: 20px 10px;
+    margin: 0px;
 }
 /*Mass extinction CSS*/
-.massExtinction{
+#massExtinction{
     display: grid;
     grid-template-columns: auto;
     gap: 20px;
 }
-.StatSection{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-.Carnivore{
+.dietCarnivore{
     display: grid;
     gap: 20px;
-}
-.sizeSelect{
-    grid-column: 1/-1;
 }
 .surviveBtn{
     width: 80%; 
@@ -83,3 +186,146 @@ body{
     font-size: 20px; 
     background-color:rgb(161, 161, 161);
 }
+#FormHeaders{
+    font-family: 'IM Fell English SC', serif;
+    font-size: 20px;
+}
+.StatSection div{
+    text-align: center;
+    flex: 50%;
+}
+#sizeSelect{
+    text-align: center;
+    flex: 100%;
+}
+#ModifierWL{
+    padding: 0px 5px;
+}
+#ModifierCH{
+    padding: 0px 5px;
+}
+#ModifierFY{
+    padding: 0px 5px;
+}
+#ModifierCam{
+    padding: 0px 5px;
+}
+
+/*Feeding game CSS*/
+#feedingCarnivoreBtn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+#feedingCarnivoreBtn > *{
+    padding:10px;
+    margin: 5px;
+}
+#feedingHerbivoreBtn{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+#feedingHerbivoreBtn > *{
+    padding:10px;
+    margin: 5px;
+}
+#OptionA{
+    text-align: center;
+    flex-basis: 30%;
+}
+#OptionB{
+    text-align: center;
+    flex-basis: 30%;
+}
+#OptionC{
+    text-align: center;
+    flex-basis: 30%;
+}
+#animalTooBig{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*Dice game CSS*/
+#dicePara{
+    position: relative;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+    "greenD VS greenR";
+}
+#VSpara{
+    grid-area: VS;
+    display: inline-block;
+}
+#img_greenD6{
+    position: relative;
+    grid-area: greenD;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 90%;
+    height: auto;
+}
+#img_redD6{
+    position: relative;
+    grid-area: greenR;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    float: left;
+    width: 90%;
+    height: auto;
+}
+#slash1{
+    grid-area: slash;
+    position: absolute;
+    float: right;
+    width: 30%;
+    height: auto;
+    /* frame by frame link https://www.sitepoint.com/frame-by-frame-animation-css-javascript/*/
+}
+#slash2{
+    grid-area: slash;
+    position: absolute;
+    left: 70%;
+    width: 30%;
+    height: auto;
+}
+#diceMod{
+    position: relative;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+#diceName{
+    position: relative;
+    display: grid;
+    column-gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+#diceBtn{
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+#sizeBarDiv{
+    display: flex;
+    justify-content: center;
+}
+#sizeBarIMG{
+    width: 98%;
+    position: absolute;
+    display: block;
+    margin: auto;
+    top:50%;
+}
+/*Mutation game css*/
+#mutationTraits{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    
+}
+
