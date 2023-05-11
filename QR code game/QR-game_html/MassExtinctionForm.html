@@ -15,11 +15,11 @@
         Your animal has lost size due to the scarcity of food!
     </section>
     <section class="Carnivore" class="show">
-        With so little food available, you will need to turn on each other.
-        Enter the stats of another animal in your group to see if you can attack it!
+        <p>With so little food available, you will need to turn on each other.
+        Enter the stats of another animal in your group to see if you can attack it!</p>
         <section class="StatSection">
             <div id="sizeSelect">
-                <p id="FormHeaders"><b>Select Size:</b></p>
+                <h1 id="FormHeaders"><b>Select Size:</b></h1>
                 <input type="radio" id="small" name="size" value="Small" onclick="MassExtinctionSize()"></input>
                 <label for="small">Small</label>
                 <input type="radio" id="medium" name="size" value="Medium" onclick="MassExtinctionSize()"></input>
@@ -28,9 +28,6 @@
                 <label for="large">Large</label>
                 <input type="radio" id="colossal" name="size" value="Colossal" onclick="MassExtinctionSize()"></input>
                 <label for="colossal">Colossal</label>
-                <div>
-                    <p id="ModifierSize"></p>
-                </div>
                 
             </div>
             <div id="habitatSelect">
@@ -58,7 +55,7 @@
                 </div>
             </div>
             <div  id="flightSelect">
-                <p id="FormHeaders"><b>Flightless or Flying?</b></p>
+                <h1 id="FormHeaders"><b>Flightless or Flying?</b></h1>
                 <p id="ModifierFY"></p>
                 <div>
                     <input type="radio" id="Flightless" name="flight" value="Flightless" checked onclick="MassExtinctionFlight()"></input>
