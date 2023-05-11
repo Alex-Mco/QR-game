@@ -1,5 +1,4 @@
 //This is the javascript file for the feeding game //number of rolls before output
-
 function CheckLocal(){
     if((localStorage.getItem("Habitat")) == null){
         localStorage.setItem("Habitat","Water");
@@ -7,13 +6,116 @@ function CheckLocal(){
         localStorage.setItem("Legs", "Four-Legs");
         localStorage.setItem("Flight","Flightless");
         localStorage.setItem("Size", "7");
-        localStorage.setItem("sizeWordVar", "Small")
-        localStorage.setItem("ExtinctModifier", "0")
-        localStorage.setItem("PageTitle", document.title)
+        localStorage.setItem("sizeWord", "Small");
+        localStorage.setItem("ExtinctModifier", "0");
+        localStorage.setItem("PageTitle", document.title);
         localStorage.setItem("plantType", "thorny");
+        localStorage.setItem("yourDie", "0");
+        localStorage.setItem("theirDie", "0");
+    }
+    if((localStorage.getItem("Habitat")) == "Water"){
+        switch(document.title){
+            case"Coloring Page":
+            case"Introduction Page":
+            case"Dice Game":
+            case"Dice Game Show":
+                document.body.style.backgroundColor = "rgb(50,98,140)";
+                document.body.style.color = "rgb(242,213,196)";
+                break;
+            case "Mass Extinction":
+                document.body.style.backgroundColor = "rgb(1,28,38)";
+                document.body.style.color = "rgb(242,213,196)";
+                document.getElementById("EvolveBtn").style.color = "white";
+                document.getElementById("EvolveBtn").style.boxShadow = "3px 3px rgb(194,103,28)";
+                document.getElementById("EvolveBtn").style.borderColor = "rgb(242,152,41)";
+                document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
+                document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
+                document.getElementById("stayBtn").style.boxShadow = "3px 3px rgb(194,103,28)";
+                document.getElementById("stayBtn").style.borderColor = "rgb(242,152,41)";
+                break;
+            case "Mass Extinction Form":
+            case "Mass Extinction Herbivore":
+                document.body.style.backgroundColor = "rgb(1,28,38)";
+                document.body.style.color = "rgb(242,213,196)";
+                if((localStorage.getItem("Diet")) == "Herbivore"){
+                    document.getElementById("OptionA").style.backgroundColor = "rgb(140,28,3)";
+                    document.getElementById("OptionA").style.color = "white";
+                    document.getElementById("OptionA").style.borderColor = "rgb(140,28,3)";
+                    document.getElementById("OptionB").style.backgroundColor = "rgb(140,28,3)";
+                    document.getElementById("OptionB").style.color = "white";
+                    document.getElementById("OptionB").style.borderColor = "white";
+                    document.getElementById("OptionC").style.backgroundColor = "rgb(140,28,3)";
+                    document.getElementById("OptionC").style.color = "white";
+                    document.getElementById("OptionC").style.borderColor = "white";
+                }
+                break;
+            case "Feeding Game Jurassic":
+            case "Feeding Game Permian":
+            case "Feeding Game Cretaceous":
+                document.body.style.backgroundColor = "rgb(50,98,140)";
+                document.body.style.color = "rgb(242,213,196)";
+                if((localStorage.getItem("Diet")) == "Herbivore"){
+                    document.getElementById("OptionA").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("OptionA").style.color = "white";
+                    document.getElementById("OptionA").style.borderColor = "black";
+                    document.getElementById("OptionA").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    document.getElementById("OptionB").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("OptionB").style.color = "white";
+                    document.getElementById("OptionB").style.borderColor = "black";
+                    document.getElementById("OptionB").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    document.getElementById("OptionC").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("OptionC").style.color = "white";
+                    document.getElementById("OptionC").style.borderColor = "black";
+                    document.getElementById("OptionC").style.boxShadow = "3px 3px rgb(1,28,38)";
+                }
+                else{
+                    document.getElementById("buttonA").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("buttonA").style.color = "white";
+                    document.getElementById("buttonA").style.borderColor = "black";
+                    document.getElementById("buttonA").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    document.getElementById("buttonB").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("buttonB").style.color = "white";
+                    document.getElementById("buttonB").style.borderColor = "black";
+                    document.getElementById("buttonB").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    document.getElementById("buttonC").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("buttonC").style.color = "white";
+                    document.getElementById("buttonC").style.borderColor = "black";
+                    document.getElementById("buttonC").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    document.getElementById("buttonD").style.backgroundColor = "rgb(25,70,180)";
+                    document.getElementById("buttonD").style.color = "white";
+                    document.getElementById("buttonD").style.borderColor = "black";
+                    document.getElementById("buttonD").style.boxShadow = "3px 3px rgb(1,28,38)";
+                }
+                break;
+            default:
+                document.body.style.backgroundColor = "rgb(50,98,140)";
+                document.body.style.color = "rgb(242,213,196)";
+                document.getElementById("EvolveBtn").style.backgroundColor = "rgb(25,70,180)";
+                document.getElementById("EvolveBtn").style.color = "white";
+        }
+    }
+    else{
+        if(document.title == "Mass Extinction" || document.title == "Mass Extinction Form" || document.title == "Mass Extinction Herbivore"){
+            document.body.style.backgroundColor = "rgb(1,28,38)";
+            document.body.style.color = "rgb(242,213,196)";
+            if(document.title == "Mass Extinction"){
+                document.getElementById("EvolveBtn").style.color = "white";
+                document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
+                document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
+                document.getElementById("EvolveBtn").style.borderColor = "white";
+                document.getElementById("stayBtn").style.borderColor = "white";
+            }
+            if(document.title == "Mass Extinction Herbivore"){
+                document.getElementById("OptionA").style.color = "white";
+                document.getElementById("OptionB").style.color = "white";
+                document.getElementById("OptionC").style.color = "white";
+            }
+        }
+        else{
+            document.body.style.backgroundColor = "#D97823";
+        }
     }
 }
-
 var habitatVar = localStorage.getItem("Habitat");
 var dietVar = localStorage.getItem("Diet");
 var legsVar = localStorage.getItem("Legs");
@@ -29,10 +131,11 @@ var dietModifier = 0;
 var flightModifier = 0;
 var camoModifier = 0;
 var pageTitle = localStorage.getItem("PageTitle");
-var plantType = localStorage.getItem("plantType");g
+var plantType = localStorage.getItem("plantType");
 
 function ClearLocal(){
     localStorage.clear();
+    document.body.style.backgroundColor = "#D97823";
 }
 function StartGame(){
     document.location.href = '/QR-game_html/ColoringPage.html';
@@ -47,18 +150,41 @@ function sizeBarChange(){
     document.getElementsByClassName("sizeBarIMG")[0].src= `/IMG/sizebar/sizebar_${sizebar}.png`;
     if (Number(sizebar) <= 0){
         document.getElementById("Dead").classList.remove("hide");
+        localStorage.setItem("SizeWord", "Dead");
     }
     else if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
         document.getElementById("Small").classList.remove("hide");
+        localStorage.setItem("SizeWord", "Small");
     }
     else if(Number(sizeVar) > 7 && Number(sizeVar) <= 14){
         document.getElementById("Medium").classList.remove("hide");
+        localStorage.setItem("SizeWord", "Medium");
     }
     else if(Number(sizeVar) > 14 && Number(sizeVar) <= 21){
         document.getElementById("Large").classList.remove("hide");
+        localStorage.setItem("SizeWord", "Large");
     }
     else{
         document.getElementById("Colossal").classList.remove("hide");
+        localStorage.setItem("SizeWord", "Colossal");
+    }
+}
+function sizeWordChange(){
+    let sizebar = localStorage.getItem("Size");
+    if (Number(sizebar) <= 0){
+        localStorage.setItem("SizeWord", "Dead");
+    }
+    else if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+        localStorage.setItem("SizeWord", "Small");
+    }
+    else if(Number(sizeVar) > 7 && Number(sizeVar) <= 14){
+        localStorage.setItem("SizeWord", "Medium");
+    }
+    else if(Number(sizeVar) > 14 && Number(sizeVar) <= 21){
+        localStorage.setItem("SizeWord", "Large");
+    }
+    else{
+        localStorage.setItem("SizeWord", "Colossal");
     }
 }
 /*QR code pages javascrpt*/
@@ -89,6 +215,7 @@ function IslandRuleChange(){
         let sizeText= num.toString();
         localStorage.setItem("Size", sizeText); // add 7 to the size
     }
+    sizeWordChange();
     document.location.href='/QR-game_html/ColoringPage.html';
 }
 function TakingFlightChange(){
@@ -261,7 +388,6 @@ function MassExtinction(){
         localStorage.setItem("plantType", "noPlantType");
     }
 }
-
 function submitMassExtinctionForm(){
     localStorage.setItem("PageTitle", document.title)
     var extinctNum = (sizeModifier + habitatModifier + dietModifier + flightModifier + camoModifier).toString()
@@ -276,28 +402,19 @@ function MassExtinctionSize(){
             if(sizeVarString == radio.value){
                 switch(sizeVarString){
                     case "Small":
-                        sizeModifier = 2;
-                        document.getElementById("ModifierSize").innerHTML = "";
-                        document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                        document.getElementById("animalTooBig").innerHTML = "";
+                        sizeModifier = 1;
+                        localStorage.setItem("PreySize", "Small");
                         break;
                     case "Medium":
                         sizeModifier = 1;
-                        document.getElementById("ModifierSize").innerHTML = "";
-                        document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                        document.getElementById("animalTooBig").innerHTML = "";
+                        localStorage.setItem("PreySize", "Medium");
                         break;
                     case "Large":
                         sizeModifier = 2;
-                        document.getElementById("ModifierSize").innerHTML = "";
-                        document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                        document.getElementById("animalTooBig").innerHTML = "";
+                        localStorage.setItem("PreySize", "Large");
                         break;
                     case "Colossal":
-                        sizeModifier = -1;
-                        document.getElementById("ModifierSize").innerHTML = "";
-                        document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                        document.getElementById("animalTooBig").innerHTML = "";
+                        localStorage.setItem("PreySize", "Colossal");
                         break;
                 }
             }
@@ -306,83 +423,53 @@ function MassExtinctionSize(){
                     case "Small":
                         switch(radio.value){
                             case "Medium":
-                                sizeModifier = -1;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Medium");
                                 break;
                             case "Large":
-                                document.getElementById("ModifierSize").innerHTML = "This animal is too big for you to attack!";
-                                document.getElementById("submitBtn").onclick = AnimalTooBig;
+                                localStorage.setItem("PreySize", "Large");
                                 break;
                             case "Colossal":
-                                document.getElementById("ModifierSize").innerHTML = "This animal is too big for you to attack!";
-                                document.getElementById("submitBtn").onclick = AnimalTooBig;
+                                localStorage.setItem("PreySize", "Colossal");
                                 break;
                         }
                         break;
                     case "Medium":
                         switch(radio.value){
                             case "Small":
-                                sizeModifier = -1;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Small");
                                 break;
                             case "Large":
-                                sizeModifier = -2;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Large");
                                 break;
                             case "Colossal":
-                                document.getElementById("ModifierSize").innerHTML = "This animal is too big for you to attack!";
-                                document.getElementById("submitBtn").onclick = AnimalTooBig;
-                                //need to prevent them from being able to advance submitBtn
+                                localStorage.setItem("PreySize", "Colossal");
                                 break;
                         }
                         break;
                     case "Large":
                         switch(radio.value){
                             case "Small":
-                                sizeModifier = 0;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                sizeModifier = -1;
+                                localStorage.setItem("PreySize", "Small");
                                 break
                             case "Medium":
-                                sizeModifier = 1;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Medium");
                                 break
                             case "Colossal":
-                                sizeModifier = -2;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Colossal");
                                 break
                         }
                         break;
                     case "Colossal":
                         switch(radio.value){
                             case "Small":
-                                sizeModifier = 2;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Small");
                                 break
                             case "Medium":
-                                sizeModifier = 2;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Medium");
                                 break
                             case "Large":
-                                sizeModifier = 1;
-                                document.getElementById("ModifierSize").innerHTML = "";
-                                document.getElementById("submitBtn").onclick = submitMassExtinctionForm;
-                                document.getElementById("animalTooBig").innerHTML = "";
+                                localStorage.setItem("PreySize", "Large");
                                 break
                         }
                         break;
@@ -491,7 +578,7 @@ function MassExtinctionCamo(){
 function FeedingGameLoad(){
     //Hide and show the different divs based on current stats. Doesn't work currently
     let sizeVar = localStorage.getItem("Size");
-    localStorage.setItem("PageTitle", document.title)
+    localStorage.setItem("PageTitle", document.title);
     if (dietVar == "Herbivore"){
         document.getElementById("feedCarnivore").classList.add("hide");
         document.getElementById("feedCarnivore").classList.remove("show");
@@ -506,14 +593,11 @@ function FeedingGameLoad(){
         if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
             document.getElementById("carnivoreTextCretaceous").innerHTML = `Time to feed! As a small carnivore, 
             you are highly specialized to hunt other small prey.`
-            document.getElementById("buttonC").onclick = AnimalTooBig;
-            document.getElementById("buttonD").onclick = AnimalTooBig;
         }
         else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
             document.getElementById('carnivoreTextCretaceous').innerHTML = `Time to feed! As a medium carnivore, 
             you are best adapted to hunt smaller prey or prey your own size. While you may use pack 
             hunting or ambush to bring down prey larger than yourself, it is difficult and dangerous.`
-            document.getElementById("buttonD").onclick = AnimalTooBig;
         }
         else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
             document.getElementById('carnivoreTextCretaceous').innerHTML = `Time to feed! As a large carnivore,
@@ -535,22 +619,24 @@ function FeedingGameLoad(){
     }
 }
 function FeedingPermian(){
+    let habitatVar = localStorage.getItem("Habitat");
+    let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
         if(habitatVar == "Land"){
             document.getElementById("buttonA").innerHTML = "Dicynodont - Attack!";
             document.getElementById("buttonB").innerHTML = "Scutosaurus - Attack!";
             document.getElementById("buttonC").innerHTML = "Aulacephalodon - Attack!";
-            document.getElementById("buttonD").style.display = "none";
         }
         else{
             document.getElementById("buttonA").innerHTML = "Aenigamacaris - Attack!";
             document.getElementById("buttonB").innerHTML = "Mooreceras - Attack!";
             document.getElementById("buttonC").innerHTML = "Eurypterid - Attack!";
-            document.getElementById("buttonD").style.display = "none";
         }
     }
 }
 function FeedingJurassic(){
+    let habitatVar = localStorage.getItem("Habitat");
+    let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
         if(habitatVar == "Land"){
             document.getElementById("buttonA").innerHTML = "Othenlia - Attack!";
@@ -567,6 +653,8 @@ function FeedingJurassic(){
     }
 }
 function FeedingCretaceous(){
+    let habitatVar = localStorage.getItem("Habitat");
+    let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
         if(habitatVar == "Land"){
             document.getElementById("buttonA").innerHTML = "Psittacosaurus - Attack!";
@@ -619,60 +707,165 @@ function fruitPlants(){
 }
 /*Dice games Javascript*/
 function DiceGameChange(){
-    ///THIS NEEDS TO CHANGE
+    let sizeVarNum = Number(sizeVar);
     if(dietVar == "Carnivore"){
         document.getElementById("diceBtn").innerHTML = "Attack!";
+        let theirSizeNum = localStorage.getItem("PreySize");
         if(pageTitle == "Mass Extinction Form"){
             //coming from the mass extinction
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
             document.getElementById("diceBtn").onclick = DiceGameCarnivoreExtinct;
         }
         else{
             //Comming from the feeding games
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
             document.getElementById("diceBtn").onclick = DiceGameCarnivore;
+        }
+        //NEED TO DO THEIR DICE
+        if(sizeVarNum <= 0){//dead
+            CheckDead();
+            localStorage.setItem("yourDie", "0");
+            localStorage.setItem("yourLoss", "0");
+            document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+        }
+        else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+            localStorage.setItem("yourDie", "4");
+            localStorage.setItem("yourLoss", "-4");
+            document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+        }
+        else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+            localStorage.setItem("yourDie", "6");
+            localStorage.setItem("yourLoss", "-6");
+            document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+        }
+        else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+            localStorage.setItem("yourDie", "8");
+            localStorage.setItem("yourLoss", "-8");
+            document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+        }
+        else{//colossal
+            localStorage.setItem("yourDie", "10");
+            localStorage.setItem("yourLoss", "-10");
+            document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+        }
+        switch(theirSizeNum){
+            case "Small":
+                localStorage.setItem("theirDie", "4");
+                localStorage.setItem("yourGain", "4");
+                document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                break;
+            case "Medium":
+                localStorage.setItem("theirDie", "6");
+                localStorage.setItem("yourGain", "6");
+                document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                break;
+            case "Large":
+                localStorage.setItem("theirDie", "8");
+                localStorage.setItem("yourGain", "8");
+                document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                break;
+            case "Colossal":
+                localStorage.setItem("theirDie", "10");
+                localStorage.setItem("yourGain", "10");
+                document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                break;
         }
     }
     else{
         document.getElementById("themName").innerHTML = "Plant";
         document.getElementById("diceBtn").innerHTML = "Feed!";
-        if(plantType == 'thorny'){
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-            document.getElementById("img_red").src = "/IMG/dice/redD4_1.png";
-            document.getElementById("diceBtn").onclick = DiceGameHerbivoreThorny;
-        }
-        else if(plantType == 'toxic'){
-            document.getElementById("img_green").src = "/IMG/dice/greenD10_1.png";//need to change to 12
-            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
-            document.getElementById("diceBtn").onclick = DiceGameHerbivoreToxic;
-        }
-        else if(plantType == 'fruit'){
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-            document.getElementById("img_red").src = "/IMG/dice/redD4_1.png";
-            document.getElementById("diceBtn").onclick = DiceGameHerbivoreFruit;
-        }
-        else{//Current mass extinction thing
+        if(pageTitle == "Mass Extinction Herbivore"){
             if(plantType == 'thorny'){
-                document.getElementById("img_green").src = "/IMG/dice/greenD4_1.png";
-                document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
                 document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassThorny;
+                if(sizeVarNum <= 0){//dead
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("yourLoss", "0");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                    localStorage.setItem("theirDie", "0");
+                    document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                }
+                else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+                    localStorage.setItem("yourDie", "4");
+                    localStorage.setItem("yourLoss", "-4");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                    localStorage.setItem("theirDie", "6");
+                    document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                }
+                else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+                    localStorage.setItem("yourDie", "6");
+                    localStorage.setItem("yourLoss", "-6");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                    localStorage.setItem("theirDie", "8");
+                    document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                }
+                else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+                    localStorage.setItem("yourDie", "8");
+                    localStorage.setItem("yourLoss", "-8");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                    localStorage.setItem("theirDie", "10");
+                    document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                }
+                else{//colossal
+                    localStorage.setItem("yourDie", "10");
+                    localStorage.setItem("yourLoss", "-10");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                    localStorage.setItem("theirDie", "12");
+                    document.getElementById("img_red").src = `/IMG/dice/redD12_1.png`;
+                }
             }
             else if(plantType == 'toxic'){
                 document.getElementById("img_green").src = "/IMG/dice/greenD8_1.png";
                 document.getElementById("img_red").src = "/IMG/dice/redD10_1.png";
                 document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassToxic;
             }
-            else{
-                document.getElementById("img_green").src = "/IMG/dice/greenD4_1.png";
+            else if(plantType == 'fruit'){
+                document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
                 document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
                 document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassFruit;
             }
         }
+        else{
+            if(plantType == 'thorny'){
+                document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                document.getElementById("diceBtn").onclick = DiceGameHerbivoreThorny;
+                if(sizeVarNum <= 0){//dead
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("yourLoss", "0");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                }
+                else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+                    localStorage.setItem("yourDie", "4");
+                    localStorage.setItem("yourLoss", "-4");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                }
+                else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+                    localStorage.setItem("yourDie", "6");
+                    localStorage.setItem("yourLoss", "-6");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                }
+                else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+                    localStorage.setItem("yourDie", "8");
+                    localStorage.setItem("yourLoss", "-8");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                }
+                else{//colossal
+                    localStorage.setItem("yourDie", "10");
+                    localStorage.setItem("yourLoss", "-10");
+                    document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                }
+            }
+            else if(plantType == 'toxic'){
+                document.getElementById("img_green").src = "/IMG/dice/greenD10_1.png";
+                document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                document.getElementById("diceBtn").onclick = DiceGameHerbivoreToxic;
+            }
+            else{
+                document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                document.getElementById("diceBtn").onclick = DiceGameHerbivoreFruit;
+            }
+        }
     }
 }
-
 function DiceGameShow(){
     let sizeBar = localStorage.getItem("Size");
     document.getElementById("sizeBarIMG").src = `/IMG/sizebar/SizeBar_${sizeBar}.png`;
@@ -697,6 +890,18 @@ function DiceGameShow(){
         if((Number(sizeBar) + sizeChange) >= 28){
             increment = 28;
         }
+        else if(sizeChange == 1){//SCHWING MAGIC
+            document.getElementById("sizeBarIMG").src = `/IMG/sizebar/SizeBar_${sizeBar}.png`;
+            setTimeout(function(){
+                document.getElementById("sizeBarIMG").src = `/IMG/sizebar/SizeBar_${Number(sizeBar)+1}.png`;
+                let sizeText = (Number(sizeBar)+1)
+                localStorage.setItem("Size", sizeText.toString());
+                sizeWordChange();
+                setTimeout(() => {
+                    CheckDead();
+                    document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
+            }, 280);
+        }
         else{
             increment = (Number(sizeBar) + sizeChange);
         }
@@ -708,21 +913,16 @@ function DiceGameShow(){
             })(i);
         }
     }
-    let num = localStorage.getItem("Size");
-    if((Number(num) + sizeChange) >= 28){
-        localStorage.setItem("Size", "28");
-    }
-    else{
-        num = Number(num) + sizeChange;
-        let sizeText= num.toString();
-        localStorage.setItem("Size", sizeText);
-    }
+    let sizeText = increment.toString();
+    localStorage.setItem("Size", sizeText);
+    sizeWordChange()
     setTimeout(() => {
             CheckDead();
             document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
 }
-
 function DiceGameCarnivore(){
+    var yourDie = localStorage.getItem("yourDie");
+    var theirDie = localStorage.getItem("theirDie");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
@@ -734,54 +934,78 @@ function DiceGameCarnivore(){
     (function(ind) {
         setTimeout(() =>{
             //Player
-            rndNum = Math.floor(Math.random() * 6) + 1;
+            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
             while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
-                rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
             }
             rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum_prev0 = rndNum;
             if(rndNum == 1){
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
             }
             else if (rndNum == 2){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
             }
             else if (rndNum == 3){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
             }
             else if (rndNum == 4){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
             }
             else if (rndNum == 5){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
             }
-            else{
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+            else if (rndNum == 6){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+            }
+            else if (rndNum == 7){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+            }
+            else if (rndNum == 8){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+            }
+            else if (rndNum == 9){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+            }
+            else {
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
             }
             //Prey
-            rndNum2 = Math.floor(Math.random() * 6) + 1;
+            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
             while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
-                rndNum2 = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
             }
             rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum2_prev0 = rndNum2;
             if(rndNum2 == 1){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
             }
             else if (rndNum2 == 2){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
             }
             else if (rndNum2 == 3){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
             }
             else if (rndNum2 == 4){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
             }
             else if (rndNum2 == 5){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+            }
+            else if (rndNum2 == 6){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+            }
+            else if (rndNum2 == 7){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+            }
+            else if (rndNum2 == 8){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+            }
+            else if (rndNum2 == 9){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
             }
             else {
-                document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
             }
             if(ind == LIMIT){
                 //apply modifiers, play animations, and pass values
@@ -790,76 +1014,25 @@ function DiceGameCarnivore(){
                 switch(sizeVarString){
                     case "Small":
                         if(preySizeVar == "Small"){
-                            rndNum += 2;
-                            youMod.innerHTML = "Bonus +2";
-                            themMod.innerHTML = "+0";
-                        }
-                        else{
-                            rndNum -= 2;
-                            youMod.innerHTML = "+0";
-                            themMod.innerHTML = "Bonus +2";
+                            rndNum += 1;
+                            youMod.innerHTML = "Bonus +1";
                         }
                         break;
                     case "Medium":
-                        if(preySizeVar == "Small"){
+                        if(preySizeVar == "Medium"){
                             rndNum += 1;
                             youMod.innerHTML = "Bonus +1";
-                            themMod.innerHTML = "+0";
-                        }
-                        else if(preySizeVar == "Medium"){
-                            rndNum += 1;
-                            youMod.innerHTML = "Bonus +1";
-                            themMod.innerHTML = "+0";
-                        }
-                        else{
-                            rndNum -= 2;
-                            youMod.innerHTML = "+0";
-                            themMod.innerHTML = "Bonus +2";
                         }
                         break;
                     case "Large":
                         if(preySizeVar == "Small"){
                             //apply +0 modifier 
-                            rndNum += 0;
-                            youMod.innerHTML = "Bonus +0";
-                            themMod.innerHTML = "Bonus +0";
-                        }
-                        else if(preySizeVar == "Medium"){
-                            rndNum += 1;
-                            youMod.innerHTML = "Bonus +1";
-                            themMod.innerHTML = "+0";
-                        }
-                        else if(preySizeVar == "Large"){
-                            rndNum += 2;
-                            youMod.innerHTML = "Bonus +2";
-                            themMod.innerHTML = "+0";
-                        }
-                        else{
-                            rndNum -= 2;
-                            youMod.innerHTML = "+0";
-                            themMod.innerHTML = "Bonus +2";
-                        }
-                        break;
-                    case "Colossal":
-                        if(preySizeVar == "Small"){
-                            rndNum += 2;
-                            youMod.innerHTML = "Bonus +2";
-                            themMod.innerHTML = "+0";
-                        }
-                        else if(preySizeVar == "Medium"){
-                            rndNum += 2;
-                            youMod.innerHTML = "Bonus +2";
-                            themMod.innerHTML = "+0";
-                        }
-                        else if(preySizeVar == "Large"){
-                            rndNum += 1;
-                            youMod.innerHTML = "Bonus +1";
-                            themMod.innerHTML = "+0";
-                        }
-                        else{
-                            rndNum -= 1;
-                            youMod.innerHTML = "+0";
+                            rndNum += -1;
                             themMod.innerHTML = "Bonus +1";
+                        }
+                        else if(preySizeVar == "Large"){
+                            rndNum += 2;
+                            youMod.innerHTML = "Bonus +2";
                         }
                         break;
                 }
@@ -875,7 +1048,25 @@ function DiceGameCarnivore(){
                     document.getElementById("slash1").classList.add("hide");
                     document.getElementById("slash2").classList.remove("hide");
                 }
-                let sizeChange = (rndNum - rndNum2).toString();
+                let sizeChange = (rndNum - rndNum2);
+                let yourLoss = localStorage.getItem("yourLoss");
+                let yourGain = localStorage.getItem("yourGain");
+                if(sizeChange <=0){//lower than 0 (loose)
+                    if(sizeChange <=  Number(yourLoss)){
+                        sizeChange = yourLoss;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
+                else{//higher than 0 (win)
+                    if(sizeChange >= Number(yourGain)){
+                        sizeChange = yourGain;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
                 localStorage.setItem("sizeChange", sizeChange);
                 setTimeout(() =>{
                     document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
@@ -885,6 +1076,8 @@ function DiceGameCarnivore(){
     }
 }
 function DiceGameCarnivoreExtinct(){
+    var yourDie = localStorage.getItem("yourDie");
+    var theirDie = localStorage.getItem("theirDie");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
@@ -896,32 +1089,89 @@ function DiceGameCarnivoreExtinct(){
     (function(ind) {
         setTimeout(function(){
             //Player
-            rndNum = Math.floor(Math.random() * 6) + 1;
+            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
             while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
-                rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
             }
             rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum_prev0 = rndNum;
             if(rndNum == 1){
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
             }
             else if (rndNum == 2){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
             }
             else if (rndNum == 3){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
             }
             else if (rndNum == 4){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
             }
             else if (rndNum == 5){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+            }
+            else if (rndNum == 6){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+            }
+            else if (rndNum == 7){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+            }
+            else if (rndNum == 8){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+            }
+            else if (rndNum == 9){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
             }
             else {
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+            }
+            //Prey
+            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
+            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
+            }
+            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+            rndNum2_prev0 = rndNum2;
+            if(rndNum2 == 1){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+            }
+            else if (rndNum2 == 2){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+            }
+            else if (rndNum2 == 3){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+            }
+            else if (rndNum2 == 4){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+            }
+            else if (rndNum2 == 5){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+            }
+            else if (rndNum2 == 6){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+            }
+            else if (rndNum2 == 7){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+            }
+            else if (rndNum2 == 8){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+            }
+            else if (rndNum2 == 9){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+            }
+            else {
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
             }
             if(ind == LIMIT){
                 //apply modifiers, play animations, and pass values
+                let youMod = document.getElementById("youMod");
+                let themMod = document.getElementById("themMod");
+                if(extinctModifier <= 0){
+                    themMod.innerHTML = "Bonus +" + extinctModifier.toString();
+                }
+                else{
+                    youMod.innerHTML = "Bonus +" + extinctModifier.toString();
+                }
                 rndNum += Number(extinctModifier);
                 if((rndNum - rndNum2) == 0){
                     document.getElementById("slash1").classList.add("hide");
@@ -935,10 +1185,81 @@ function DiceGameCarnivoreExtinct(){
                     document.getElementById("slash1").classList.add("hide");
                     document.getElementById("slash2").classList.remove("hide");
                 }
-                let sizeChange = (rndNum - rndNum2).toString();
+                let sizeChange = (rndNum - rndNum2);
+                let yourLoss = localStorage.getItem("yourLoss");
+                let yourGain = localStorage.getItem("yourGain");
+                if(sizeChange <=0){//lower than 0 (loose)
+                    if(sizeChange <=  Number(yourLoss)){
+                        sizeChange = yourLoss;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
+                else{//higher than 0 (win)
+                    if(sizeChange >= Number(yourGain)){
+                        sizeChange = yourGain;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
                 localStorage.setItem("sizeChange", sizeChange);
                 setTimeout(() =>{
                     document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+            }
+        }, (140 * ind)); //speed of rolls
+    })(i);
+    }
+}
+function DiceGameHerbivoreThorny(){
+    var yourDie = localStorage.getItem("yourDie");
+    var rndNum;
+    var rndNum_prev0;
+    var rndNum_prev1;
+    var rndNum2;
+    var rndNum2_prev0;
+    var rndNum2_prev1;
+    var LIMIT = 12;
+    for (var i=0;i<=LIMIT;i++) {
+    (function(ind) {
+        setTimeout(function(){
+            //Player
+            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
+            while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
+            }
+            rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+            rndNum_prev0 = rndNum;
+            if(rndNum == 1){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+            }
+            else if (rndNum == 2){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+            }
+            else if (rndNum == 3){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+            }
+            else if (rndNum == 4){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+            }
+            else if (rndNum == 5){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+            }
+            else if (rndNum == 6){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+            }
+            else if (rndNum == 7){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+            }
+            else if (rndNum == 8){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+            }
+            else if (rndNum == 9){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+            }
+            else {
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
             }
             //Prey
             rndNum2 = Math.floor(Math.random() * 6) + 1;
@@ -948,7 +1269,7 @@ function DiceGameCarnivoreExtinct(){
             rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum2_prev0 = rndNum2;
             if(rndNum2 == 1){
-                document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
             }
             else if (rndNum2 == 2){
                 document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
@@ -962,69 +1283,22 @@ function DiceGameCarnivoreExtinct(){
             else if (rndNum2 == 5){
                 document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
             }
-            else {
+            else{
                 document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
-            }
-        }, (140 * ind)); //speed of rolls
-    })(i);
-    }
-}
-function DiceGameHerbivoreThorny(){
-//Be default d6 vs d4
-//increase size by how much you win
-//Bonus for larger animals 0/1/2/3
-    var rndNum;
-    var rndNum_prev0;
-    var rndNum_prev1;
-    var rndNum2;
-    var rndNum2_prev0;
-    var rndNum2_prev1;
-    var LIMIT = 12;
-    for (var i=0;i<=LIMIT;i++) {
-    (function(ind) {
-        setTimeout(function(){
-            //Player
-            rndNum = Math.floor(Math.random() * 6) + 1;
-            while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
-                rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
-            }
-            rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
-            rndNum_prev0 = rndNum;
-            if(rndNum == 1){
-            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-            }
-            else if (rndNum == 2){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
-            }
-            else if (rndNum == 3){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
-            }
-            else if (rndNum == 4){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
-            }
-            else if (rndNum == 5){
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
-            }
-            else {
-                document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
             }
             if(ind == LIMIT){
                 let youMod = document.getElementById("youMod");
                 let themMod = document.getElementById("themMod");
                 if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
                     rndNum += 0;
-                    youMod.innerHTML = "Bonus +0";
-                    themMod.innerHTML = "Bonus +0";
                 }
                 else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
                     rndNum += 1;
                     youMod.innerHTML = "Bonus +1";
-                    themMod.innerHTML = "+0";
                 }
                 else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
                     rndNum += 2;
                     youMod.innerHTML = "Bonus +2";
-                    themMod.innerHTML = "+0";
                 }
                 else if(Number(sizeVar) == 0){
                     document.location.href='./DeathPage.html';
@@ -1032,7 +1306,6 @@ function DiceGameHerbivoreThorny(){
                 else{
                     rndNum += 3;
                     youMod.innerHTML = "Bonus +3";
-                    themMod.innerHTML = "+0";
                 }
                 if((rndNum - rndNum2) == 0){
                     document.getElementById("slash1").classList.add("hide");
@@ -1046,29 +1319,22 @@ function DiceGameHerbivoreThorny(){
                     document.getElementById("slash1").classList.add("hide");
                     document.getElementById("slash2").classList.remove("hide");
                 }
-                let sizeChange = (rndNum - rndNum2).toString();
+                let sizeChange = (rndNum - rndNum2);
+                let yourLoss = localStorage.getItem("yourLoss");
+                if(sizeChange <= 0){//lower than 0 (loose)
+                    if(sizeChange <=  Number(yourLoss)){
+                        sizeChange = yourLoss;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
+                else{
+                    sizeChange = sizeChange.toString();
+                }
                 localStorage.setItem("sizeChange", sizeChange);
                 setTimeout(() =>{
                     document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
-            }
-            //Prey
-            rndNum2 = Math.floor(Math.random() * 4) + 1;
-            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
-                rndNum2 = Math.floor(Math.random() * 4) + 1; //...and prevent the current roll from landing on them
-            }
-            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
-            rndNum2_prev0 = rndNum2;
-            if(rndNum2 == 1){
-            document.getElementById("img_red").src = "/IMG/dice/redD4_1.png";
-            }
-            else if (rndNum2 == 2){
-                document.getElementById("img_red").src = "/IMG/dice/redD4_2.png";
-            }
-            else if (rndNum2 == 3){
-                document.getElementById("img_red").src = "/IMG/dice/redD4_3.png";
-            }
-            else{
-                document.getElementById("img_red").src = "/IMG/dice/redD4_4.png";
             }
         }, (140 * ind)); //speed of rolls
     })(i);
@@ -1122,25 +1388,7 @@ function DiceGameHerbivoreToxic(){
                 document.getElementById("img_green").src = "greenD10_9.png";
             }
             else {
-                document.getElementById("img_green").src = "greenD10_0.png";
-            }
-            if(ind == LIMIT){
-                if((rndNum - rndNum2) == 0){
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.add("hide");
-                }
-                else if((rndNum - rndNum2) < 0){
-                    document.getElementById("slash2").classList.add("hide");
-                    document.getElementById("slash1").classList.remove("hide");
-                }
-                else{
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.remove("hide");
-                }
-                let sizeChange = (rndNum - rndNum2).toString();
-                localStorage.setItem("sizeChange", sizeChange);
-                setTimeout(() =>{
-                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                document.getElementById("img_green").src = "greenD10_10.png";
             }
             //Plants
             rndNum2 = Math.floor(Math.random() * 8) + 1;
@@ -1172,6 +1420,24 @@ function DiceGameHerbivoreToxic(){
             }
             else {
                 document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+            }
+            if(ind == LIMIT){
+                if((rndNum - rndNum2) == 0){
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.add("hide");
+                }
+                else if((rndNum - rndNum2) < 0){
+                    document.getElementById("slash2").classList.add("hide");
+                    document.getElementById("slash1").classList.remove("hide");
+                }
+                else{
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.remove("hide");
+                }
+                let sizeChange = (rndNum - rndNum2).toString();
+                localStorage.setItem("sizeChange", sizeChange);
+                setTimeout(() =>{
+                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
             }
         }, (140 * ind)); //speed of rolls
     })(i);
@@ -1216,25 +1482,46 @@ function DiceGameHerbivoreFruit(){
             else {
                 document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
             }
+            //Prey
+            rndNum2 = Math.floor(Math.random() * 6) + 1;
+            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                rndNum2 = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+            }
+            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+            rndNum2_prev0 = rndNum2;
+            if(rndNum2 == 1){
+            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+            }
+            else if (rndNum2 == 2){
+                document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+            }
+            else if (rndNum2 == 3){
+                document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+            }
+            else if (rndNum2 == 4){
+                document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+            }
+            else if (rndNum2 == 5){
+                document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+            }
+            else{
+                document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+            }
             if(ind == LIMIT){
                 let youMod = document.getElementById("youMod");
                 let themMod = document.getElementById("themMod");
                 var feedingTitle = document.getElementById("feedingTitle");
                 switch(feedingTitle){
                     case 'Permian':
-                        rndNum += 1;
-                        youMod.innerHTML = "Bonus +1";
-                        themMod.innerHTML = "+0";
+                        rndNum += 0;
                         break
                     case 'Jurassic':
-                        rndNum += 2;
-                        youMod.innerHTML = "Bonus +2";
-                        themMod.innerHTML = "+0";
+                        rndNum += 1;
+                        youMod.innerHTML = "Bonus +1";
                         break
                     case 'Cretaceous':
-                        rndNum += 3;
-                        youMod.innerHTML = "Bonus +3";
-                        themMod.innerHTML = "+0";
+                        rndNum += 2;
+                        youMod.innerHTML = "Bonus +2";
                         break
                 }
                 if((rndNum - rndNum2) == 0){
@@ -1254,30 +1541,13 @@ function DiceGameHerbivoreFruit(){
                 setTimeout(() =>{
                     document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
             }
-            //Prey
-            rndNum2 = Math.floor(Math.random() * 4) + 1;
-            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
-                rndNum2 = Math.floor(Math.random() * 4) + 1; //...and prevent the current roll from landing on them
-            }
-            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
-            rndNum2_prev0 = rndNum2;
-            if(rndNum2 == 1){
-            document.getElementById("img_red").src = "/IMG/dice/redD4_1.png";
-            }
-            else if (rndNum2 == 2){
-                document.getElementById("img_red").src = "/IMG/dice/redD4_2.png";
-            }
-            else if (rndNum2 == 3){
-                document.getElementById("img_red").src = "/IMG/dice/redD4_3.png";
-            }
-            else{
-                document.getElementById("img_red").src = "/IMG/dice/redD4_4.png";
-            }
         }, (140 * ind)); //speed of rolls
     })(i);
     }
 }
 function DiceGameHerbivoreMassThorny(){
+    var yourDie = localStorage.getItem("yourDie");
+    var theirDie = localStorage.getItem("theirDie");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
@@ -1289,23 +1559,84 @@ function DiceGameHerbivoreMassThorny(){
     (function(ind) {
         setTimeout(function(){
             //Player
-            rndNum = Math.floor(Math.random() * 4) + 1;
+            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
             while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
-                rndNum = Math.floor(Math.random() * 4) + 1; //...and prevent the current roll from landing on them
+                rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
             }
             rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum_prev0 = rndNum;
             if(rndNum == 1){
-            document.getElementById("img_green").src = "/IMG/dice/greenD4_1.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
             }
             else if (rndNum == 2){
-                document.getElementById("img_green").src = "/IMG/dice/greenD4_2.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
             }
             else if (rndNum == 3){
-                document.getElementById("img_green").src = "/IMG/dice/greenD4_3.png";
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
             }
-            else{
-                document.getElementById("img_green").src = "/IMG/dice/greenD4_4.png";
+            else if (rndNum == 4){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+            }
+            else if (rndNum == 5){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+            }
+            else if (rndNum == 6){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+            }
+            else if (rndNum == 7){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+            }
+            else if (rndNum == 8){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+            }
+            else if (rndNum == 9){
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+            }
+            else {
+                document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+            }
+            //Plants
+            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
+            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
+            }
+            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+            rndNum2_prev0 = rndNum2;
+            if(rndNum2 == 1){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+            }
+            else if (rndNum2 == 2){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+            }
+            else if (rndNum2 == 3){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+            }
+            else if (rndNum2 == 4){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+            }
+            else if (rndNum2 == 5){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+            }
+            else if (rndNum2 == 6){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+            }
+            else if (rndNum2 == 7){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+            }
+            else if (rndNum2 == 8){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+            }
+            else if (rndNum2 == 9){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+            }
+            else if (rndNum2 == 10){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+            }
+            else if (rndNum2 == 11){
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_11.png`;
+            }
+            else {
+                document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_12.png`;
             }
             if(ind == LIMIT){
                 if((rndNum - rndNum2) == 0){
@@ -1320,41 +1651,19 @@ function DiceGameHerbivoreMassThorny(){
                     document.getElementById("slash1").classList.add("hide");
                     document.getElementById("slash2").classList.remove("hide");
                 }
-                let sizeChange = (rndNum - rndNum2).toString();
+                let sizeChange = (rndNum - rndNum2);
+                let yourLoss = localStorage.getItem("yourLoss");
+                if(sizeChange <=0){//lower than 0 (loose)
+                    if(sizeChange <=  Number(yourLoss)){
+                        sizeChange = yourLoss;
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
                 localStorage.setItem("sizeChange", sizeChange);
                 setTimeout(() =>{
                     document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
-            }
-            //Plants
-            rndNum2 = Math.floor(Math.random() * 8) + 1;
-            while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
-                rndNum2 = Math.floor(Math.random() * 8) + 1; //...and prevent the current roll from landing on them
-            }
-            rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
-            rndNum2_prev0 = rndNum2;
-            if(rndNum2 == 1){
-            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
-            }
-            else if (rndNum2 == 2){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_2.png";
-            }
-            else if (rndNum2 == 3){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_3.png";
-            }
-            else if (rndNum2 == 4){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_4.png";
-            }
-            else if (rndNum2 == 5){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_5.png";
-            }
-            else if (rndNum2 == 6){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_6.png";
-            }
-            else if (rndNum2 == 7){
-                document.getElementById("img_red").src = "/IMG/dice/redD8_7.png";
-            }
-            else {
-                document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
             }
         }, (140 * ind)); //speed of rolls
     })(i);
@@ -1402,24 +1711,6 @@ function DiceGameHerbivoreMassToxic(){
             else {
                 document.getElementById("img_green").src = "/IMG/dice/greenD8_8.png";
             }
-            if(ind == LIMIT){
-                if((rndNum - rndNum2) == 0){
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.add("hide");
-                }
-                else if((rndNum - rndNum2) < 0){
-                    document.getElementById("slash2").classList.add("hide");
-                    document.getElementById("slash1").classList.remove("hide");
-                }
-                else{
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.remove("hide");
-                }
-                let sizeChange = (rndNum - rndNum2).toString();
-                localStorage.setItem("sizeChange", sizeChange);
-                setTimeout(() =>{
-                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
-            }
             //Plants
             rndNum2 = Math.floor(Math.random() * 10) + 1;
             while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
@@ -1457,6 +1748,32 @@ function DiceGameHerbivoreMassToxic(){
             else {
                 document.getElementById("img_red").src = "/IMG/dice/redD10_10.png";
             }
+            if(ind == LIMIT){
+                if((rndNum - rndNum2) == 0){
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.add("hide");
+                }
+                else if((rndNum - rndNum2) < 0){
+                    document.getElementById("slash2").classList.add("hide");
+                    document.getElementById("slash1").classList.remove("hide");
+                }
+                else{
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.remove("hide");
+                }
+                let sizeChange = (rndNum - rndNum2);
+                if(sizeChange <=0){//lower than 0 (loose)
+                    if(sizeChange <= -8){//schwing magic
+                        sizeChange = "-8";
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
+                localStorage.setItem("sizeChange", sizeChange);
+                setTimeout(() =>{
+                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+            }
         }, (140 * ind)); //speed of rolls
     })(i);
     }
@@ -1473,9 +1790,9 @@ function DiceGameHerbivoreMassFruit(){
     (function(ind) {
         setTimeout(function(){
             //Player
-            rndNum = Math.floor(Math.random() * 4) + 1;
+            rndNum = Math.floor(Math.random() * 6) + 1;
             while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
-                rndNum = Math.floor(Math.random() * 4) + 1; //...and prevent the current roll from landing on them
+                rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
             }
             rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
             rndNum_prev0 = rndNum;
@@ -1488,51 +1805,14 @@ function DiceGameHerbivoreMassFruit(){
             else if (rndNum == 3){
                 document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
             }
-            else {
+            else if (rndNum == 4){
                 document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
             }
-            if(ind == LIMIT){
-                let youMod = document.getElementById("youMod");
-                let themMod = document.getElementById("themMod");
-                if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
-                    rndNum += 3;
-                    youMod.innerHTML = "Bonus +3";
-                    themMod.innerHTML = "Bonus +0";
-                }
-                else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
-                    rndNum += 2;
-                    youMod.innerHTML = "Bonus +2";
-                    themMod.innerHTML = "+0";
-                }
-                else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
-                    rndNum += 1;
-                    youMod.innerHTML = "Bonus +1";
-                    themMod.innerHTML = "+0";
-                }
-                else if(Number(sizeVar) == 0){
-                    document.location.href='./DeathPage.html';
-                }
-                else{
-                    rndNum += 0;
-                    youMod.innerHTML = "Bonus +0";
-                    themMod.innerHTML = "+0";
-                }
-                if((rndNum - rndNum2) == 0){
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.add("hide");
-                }
-                else if((rndNum - rndNum2) < 0){
-                    document.getElementById("slash2").classList.add("hide");
-                    document.getElementById("slash1").classList.remove("hide");
-                }
-                else{
-                    document.getElementById("slash1").classList.add("hide");
-                    document.getElementById("slash2").classList.remove("hide");
-                }
-                let sizeChange = (rndNum - rndNum2).toString();
-                localStorage.setItem("sizeChange", sizeChange);
-                setTimeout(() =>{
-                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+            else if (rndNum == 5){
+                document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+            }
+            else {
+                document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
             }
             //Plants
             rndNum2 = Math.floor(Math.random() * 8) + 1;
@@ -1564,6 +1844,52 @@ function DiceGameHerbivoreMassFruit(){
             }
             else{
                 document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+            }
+            if(ind == LIMIT){
+                let youMod = document.getElementById("youMod");
+                let themMod = document.getElementById("themMod");
+                if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+                    rndNum += 1;
+                    youMod.innerHTML = "Bonus +1";
+                }
+                else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
+                    rndNum += 0;
+                    youMod.innerHTML = "Bonus +0";
+                }
+                else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
+                    rndNum -= 1;
+                    youMod.innerHTML = "Bonus -1";
+                }
+                else if(Number(sizeVar) == 0){
+                    document.location.href='./DeathPage.html';
+                }
+                else{
+                    rndNum -= 2;
+                }
+                if((rndNum - rndNum2) == 0){
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.add("hide");
+                }
+                else if((rndNum - rndNum2) < 0){
+                    document.getElementById("slash2").classList.add("hide");
+                    document.getElementById("slash1").classList.remove("hide");
+                }
+                else{
+                    document.getElementById("slash1").classList.add("hide");
+                    document.getElementById("slash2").classList.remove("hide");
+                }
+                let sizeChange = (rndNum - rndNum2);
+                if(sizeChange <=0){//lower than 0 (loose)
+                    if(sizeChange <= -6){//schwing magic
+                        sizeChange = "-6";
+                    }
+                    else{
+                        sizeChange = sizeChange.toString();
+                    }
+                }
+                localStorage.setItem("sizeChange", sizeChange);
+                setTimeout(() =>{
+                    document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
             }
         }, (140 * ind)); //speed of rolls
     })(i);

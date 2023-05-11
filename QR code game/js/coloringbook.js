@@ -99,7 +99,6 @@ customElements.define('jl-coloringbook', class extends HTMLElement
             /*default theme*/
             .toolbar {
                 z-index:100000;
-                position: sticky;  position: -webkit-sticky; 
                 top: 0;
                 background-color: rgba(200,200,200,.1) 
             }
