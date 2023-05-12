@@ -8,8 +8,7 @@ function CheckLocal(){
         localStorage.setItem("Size", "7");
         localStorage.setItem("sizeWord", "Small");
         localStorage.setItem("ExtinctModifier", "0");
-        localStorage.setItem("PageTitle", document.title);
-        localStorage.setItem("plantType", "thorny");
+        localStorage.setItem("PageTitle", document.title);//
         localStorage.setItem("yourDie", "0");
         localStorage.setItem("theirDie", "0");
     }
@@ -125,11 +124,11 @@ var preySizeVar = localStorage.getItem("PreySize");
 var extinctModifier = localStorage.getItem("ExtinctModifier")
 var sizeVarString = localStorage.getItem("SizeWord");
 var extinctModifier = localStorage.getItem("ExtinctModifier");
-var sizeModifier = 0;
-var habitatModifier = 0;
-var dietModifier = 0;
-var flightModifier = 0;
-var camoModifier = 0;
+var sizeModifier = 0;//
+var habitatModifier = 0;//
+var dietModifier = 0;//
+var flightModifier = 0;//
+var camoModifier = 0;//
 var pageTitle = localStorage.getItem("PageTitle");
 var plantType = localStorage.getItem("plantType");
 
@@ -141,6 +140,7 @@ function StartGame(){
     document.location.href = '/QR-game_html/ColoringPage.html';
 }
 function CheckDead(){
+    let sizeVar = localStorage.getItem("Size");
     if(Number(sizeVar) <= 0){
         document.location.href='./DeathPage.html';
     }
@@ -243,7 +243,6 @@ function MutationChange(){
                 randValPrev1 = randomValTraitOne;
                 switch(randomValTraitOne){
                     case 0:
-                        
                         if(habitatVar == "Land"){
                             document.getElementById('TraitA').innerHTML = habitatVar;
                             document.getElementById('TraitB').innerHTML = "Water";
@@ -380,6 +379,7 @@ function ReturnToColoringPage(){
 
 /*MassExtinction CSS*/
 function MassExtinction(){
+    let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
         document.location.href='/QR-game_html/MassExtinctionForm.html';
     }
@@ -578,6 +578,7 @@ function MassExtinctionCamo(){
 function FeedingGameLoad(){
     //Hide and show the different divs based on current stats. Doesn't work currently
     let sizeVar = localStorage.getItem("Size");
+    let dietVar = localStorage.getItem("Diet");
     localStorage.setItem("PageTitle", document.title);
     if (dietVar == "Herbivore"){
         document.getElementById("feedCarnivore").classList.add("hide");
@@ -690,9 +691,6 @@ function ColossalFeeding(){
     localStorage.removeItem("PreySize");
     localStorage.setItem("PreySize","Colossal");
 }
-function AnimalTooBig(){
-    document.getElementById("animalTooBig").innerHTML = "This animal is too big for your to attack!";
-}
 function thornyPlants(){
     localStorage.setItem("plantType", "thorny");
     document.location.href='./DiceGame.html';
@@ -707,7 +705,9 @@ function fruitPlants(){
 }
 /*Dice games Javascript*/
 function DiceGameChange(){
+    var sizeVar = localStorage.getItem("Size");
     let sizeVarNum = Number(sizeVar);
+    let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
         document.getElementById("diceBtn").innerHTML = "Attack!";
         let theirSizeNum = localStorage.getItem("PreySize");
@@ -772,6 +772,7 @@ function DiceGameChange(){
     else{
         document.getElementById("themName").innerHTML = "Plant";
         document.getElementById("diceBtn").innerHTML = "Feed!";
+        let plantType = localStorage.getItem("plantType");
         if(pageTitle == "Mass Extinction Herbivore"){
             if(plantType == 'thorny'){
                 document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
@@ -923,6 +924,7 @@ function DiceGameShow(){
 function DiceGameCarnivore(){
     var yourDie = localStorage.getItem("yourDie");
     var theirDie = localStorage.getItem("theirDie");
+    var sizeVarString = localStorage.getItem("SizeWord");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
@@ -1078,6 +1080,7 @@ function DiceGameCarnivore(){
 function DiceGameCarnivoreExtinct(){
     var yourDie = localStorage.getItem("yourDie");
     var theirDie = localStorage.getItem("theirDie");
+    var extinctModifier = localStorage.getItem("ExtinctModifier");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
@@ -1288,7 +1291,6 @@ function DiceGameHerbivoreThorny(){
             }
             if(ind == LIMIT){
                 let youMod = document.getElementById("youMod");
-                let themMod = document.getElementById("themMod");
                 if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
                     rndNum += 0;
                 }
@@ -1509,7 +1511,6 @@ function DiceGameHerbivoreFruit(){
             }
             if(ind == LIMIT){
                 let youMod = document.getElementById("youMod");
-                let themMod = document.getElementById("themMod");
                 var feedingTitle = document.getElementById("feedingTitle");
                 switch(feedingTitle){
                     case 'Permian':
