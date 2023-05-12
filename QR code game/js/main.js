@@ -115,22 +115,11 @@ function CheckLocal(){
         }
     }
 }
-var habitatVar = localStorage.getItem("Habitat");
-var dietVar = localStorage.getItem("Diet");
-var legsVar = localStorage.getItem("Legs");
-var flightVar = localStorage.getItem("Flight");
-var sizeVar = localStorage.getItem("Size");
-var preySizeVar = localStorage.getItem("PreySize");
-var extinctModifier = localStorage.getItem("ExtinctModifier")
-var sizeVarString = localStorage.getItem("SizeWord");
-var extinctModifier = localStorage.getItem("ExtinctModifier");
 var sizeModifier = 0;//
 var habitatModifier = 0;//
 var dietModifier = 0;//
 var flightModifier = 0;//
 var camoModifier = 0;//
-var pageTitle = localStorage.getItem("PageTitle");
-var plantType = localStorage.getItem("plantType");
 
 function ClearLocal(){
     localStorage.clear();
@@ -174,13 +163,13 @@ function sizeWordChange(){
     if (Number(sizebar) <= 0){
         localStorage.setItem("SizeWord", "Dead");
     }
-    else if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+    else if(Number(sizebar) > 0 && Number(sizebar) <= 7){
         localStorage.setItem("SizeWord", "Small");
     }
-    else if(Number(sizeVar) > 7 && Number(sizeVar) <= 14){
+    else if(Number(sizebar) > 7 && Number(sizebar) <= 14){
         localStorage.setItem("SizeWord", "Medium");
     }
-    else if(Number(sizeVar) > 14 && Number(sizeVar) <= 21){
+    else if(Number(sizebar) > 14 && Number(sizebar) <= 21){
         localStorage.setItem("SizeWord", "Large");
     }
     else{
@@ -706,6 +695,7 @@ function fruitPlants(){
 /*Dice games Javascript*/
 function DiceGameChange(){
     var sizeVar = localStorage.getItem("Size");
+    var pageTitle = localStorage.getItem("PageTitle");
     let sizeVarNum = Number(sizeVar);
     let dietVar = localStorage.getItem("Diet");
     if(dietVar == "Carnivore"){
@@ -925,6 +915,7 @@ function DiceGameCarnivore(){
     var yourDie = localStorage.getItem("yourDie");
     var theirDie = localStorage.getItem("theirDie");
     var sizeVarString = localStorage.getItem("SizeWord");
+    var preySizeVar = localStorage.getItem("PreySize");
     var rndNum;
     var rndNum_prev0;
     var rndNum_prev1;
