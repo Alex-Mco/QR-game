@@ -106,11 +106,11 @@
                 <p id="themName">Prey</p>
             </div>
             <div id="dicePara">
-                <img id="img_green" src="/IMG/dice/greenD6_1.png" width="100%">
-                <img id="slash1" src="/IMG/dice/slash2.png" class="hide">
+                <img id="img_green" src="https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png" width="100%">
+                <img id="slash1" src="https://thanksgivingpoint.org/app/uploads/2022/01/slash2.png" class="hide">
                 <img id="versus" src="https://thanksgivingpoint.org/app/uploads/2022/01/versus.png">
-                <img id="img_red" src="/IMG/dice/redD6_1.png" width="100%">
-                <img id="slash2" src="/IMG/dice/slash2.png" class="hide">
+                <img id="img_red" src="https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png" width="100%">
+                <img id="slash2" src="https://thanksgivingpoint.org/app/uploads/2022/01/slash2.png" class="hide">
             </div>
             <div id="diceMod">
                 <p id="youMod" class="Bonus"></p>
@@ -157,7 +157,7 @@
                 if(dietVar == "Carnivore"){
                     document.getElementById("diceBtn").innerHTML = "Attack!";
                     let theirSizeNum = localStorage.getItem("PreySize");
-                    if(pageTitle == "Mass Extinction Form"){
+                    if(pageTitle == "Mass Extinction Form - Thanksgiving Point"){
                         //coming from the mass extinction
                         document.getElementById("diceBtn").onclick = DiceGameCarnivoreExtinct;
                     }
@@ -170,48 +170,48 @@
                         CheckDead();
                         localStorage.setItem("yourDie", "0");
                         localStorage.setItem("yourLoss", "0");
-                        document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                        document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                     }
                     else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
                         localStorage.setItem("yourDie", "4");
                         localStorage.setItem("yourLoss", "-4");
-                        document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                        document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                     }
                     else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
                         localStorage.setItem("yourDie", "6");
                         localStorage.setItem("yourLoss", "-6");
-                        document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                        document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png`;
                     }
                     else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
                         localStorage.setItem("yourDie", "8");
                         localStorage.setItem("yourLoss", "-8");
-                        document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                        document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_1.png`;
                     }
                     else{//colossal
                         localStorage.setItem("yourDie", "10");
                         localStorage.setItem("yourLoss", "-10");
-                        document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                        document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_1.png`;
                     }
                     switch(theirSizeNum){
                         case "Small":
                             localStorage.setItem("theirDie", "4");
                             localStorage.setItem("yourGain", "4");
-                            document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD4_1.png`;
                             break;
                         case "Medium":
                             localStorage.setItem("theirDie", "6");
                             localStorage.setItem("yourGain", "6");
-                            document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png`;
                             break;
                         case "Large":
                             localStorage.setItem("theirDie", "8");
                             localStorage.setItem("yourGain", "8");
-                            document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png`;
                             break;
                         case "Colossal":
                             localStorage.setItem("theirDie", "10");
                             localStorage.setItem("yourGain", "10");
-                            document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD10_1.png`;
                             break;
                     }
                 }
@@ -219,95 +219,95 @@
                     document.getElementById("themName").innerHTML = "Plant";
                     document.getElementById("diceBtn").innerHTML = "Feed!";
                     let plantType = localStorage.getItem("plantType");
-                    if(pageTitle == "Mass Extinction Herbivore"){
+                    if(pageTitle == "Mass Extinction Herbivore - Thanksgiving Point"){
                         if(plantType == 'thorny'){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassThorny;
                             if(sizeVarNum <= 0){//dead
                                 localStorage.setItem("yourDie", "0");
                                 localStorage.setItem("yourLoss", "0");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                                 localStorage.setItem("theirDie", "0");
-                                document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                                document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD4_1.png`;
                             }
                             else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
                                 localStorage.setItem("yourDie", "4");
                                 localStorage.setItem("yourLoss", "-4");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                                 localStorage.setItem("theirDie", "6");
-                                document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                                document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png`;
                             }
                             else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
                                 localStorage.setItem("yourDie", "6");
                                 localStorage.setItem("yourLoss", "-6");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png`;
                                 localStorage.setItem("theirDie", "8");
-                                document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                                document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png`;
                             }
                             else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
                                 localStorage.setItem("yourDie", "8");
                                 localStorage.setItem("yourLoss", "-8");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_1.png`;
                                 localStorage.setItem("theirDie", "10");
-                                document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                                document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD10_1.png`;
                             }
                             else{//colossal
                                 localStorage.setItem("yourDie", "10");
                                 localStorage.setItem("yourLoss", "-10");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_1.png`;
                                 localStorage.setItem("theirDie", "12");
-                                document.getElementById("img_red").src = `/IMG/dice/redD12_1.png`;
+                                document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD12_1.png`;
                             }
                         }
                         else if(plantType == 'toxic'){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_1.png";
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_1.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassToxic;
                         }
                         else if(plantType == 'fruit'){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassFruit;
                         }
                     }
                     else{
                         if(plantType == 'thorny'){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreThorny;
                             if(sizeVarNum <= 0){//dead
                                 localStorage.setItem("yourDie", "0");
                                 localStorage.setItem("yourLoss", "0");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                             }
                             else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
                                 localStorage.setItem("yourDie", "4");
                                 localStorage.setItem("yourLoss", "-4");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD4_1.png`;
                             }
                             else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
                                 localStorage.setItem("yourDie", "6");
                                 localStorage.setItem("yourLoss", "-6");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png`;
                             }
                             else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
                                 localStorage.setItem("yourDie", "8");
                                 localStorage.setItem("yourLoss", "-8");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_1.png`;
                             }
                             else{//colossal
                                 localStorage.setItem("yourDie", "10");
                                 localStorage.setItem("yourLoss", "-10");
-                                document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                                document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_1.png`;
                             }
                         }
                         else if(plantType == 'toxic'){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD10_1.png";
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreToxic;
                         }
                         else{
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png";
                             document.getElementById("diceBtn").onclick = DiceGameHerbivoreFruit;
                         }
                     }
@@ -339,34 +339,34 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_1.png`;
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_2.png`;
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_3.png`;
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_4.png`;
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_5.png`;
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_6.png`;
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_7.png`;
                         }
                         else if (rndNum == 8){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_8.png`;
                         }
                         else if (rndNum == 9){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_10.png`;
                         }
                         //Prey
                         rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
@@ -376,34 +376,34 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_1.png`;
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_2.png`;
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_3.png`;
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_4.png`;
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_5.png`;
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_6.png`;
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_7.png`;
                         }
                         else if (rndNum2 == 8){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_8.png`;
                         }
                         else if (rndNum2 == 9){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_10.png`;
                         }
                         if(ind == LIMIT){
                             //apply modifiers, play animations, and pass values
@@ -467,7 +467,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -498,34 +498,34 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_1.png`;
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_2.png`;
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_3.png`;
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_4.png`;
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_5.png`;
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_6.png`;
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_7.png`;
                         }
                         else if (rndNum == 8){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_8.png`;
                         }
                         else if (rndNum == 9){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_10.png`;
                         }
                         //Prey
                         rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
@@ -535,34 +535,34 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_1.png`;
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_2.png`;
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_3.png`;
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_4.png`;
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_5.png`;
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_6.png`;
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_7.png`;
                         }
                         else if (rndNum2 == 8){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_8.png`;
                         }
                         else if (rndNum2 == 9){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_10.png`;
                         }
                         if(ind == LIMIT){
                             //apply modifiers, play animations, and pass values
@@ -608,7 +608,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -637,34 +637,34 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_1.png`;
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_2.png`;
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_3.png`;
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_4.png`;
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_5.png`;
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_6.png`;
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_7.png`;
                         }
                         else if (rndNum == 8){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_8.png`;
                         }
                         else if (rndNum == 9){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_10.png`;
                         }
                         //Prey
                         rndNum2 = Math.floor(Math.random() * 6) + 1;
@@ -674,22 +674,22 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                        document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                        document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png";
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_2.png";
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_3.png";
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_4.png";
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_5.png";
                         }
                         else{
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_6.png";
                         }
                         if(ind == LIMIT){
                             let youMod = document.getElementById("youMod");
@@ -738,7 +738,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -768,34 +768,34 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                        document.getElementById("img_green").src = "greenD10_1.png";
+                        document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_1.png";
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = "greenD10_2.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_2.png";
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = "greenD10_3.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_3.png";
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = "greenD10_4.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_4.png";
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = "greenD10_5.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_5.png";
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = "greenD10_6.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_6.png";
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = "greenD10_7.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_7.png";
                         }
                         else if (rndNum == 8){
-                            document.getElementById("img_green").src = "greenD10_8.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_8.png";
                         }
                         else if (rndNum == 9){
-                            document.getElementById("img_green").src = "greenD10_9.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_9.png";
                         }
                         else {
-                            document.getElementById("img_green").src = "greenD10_10.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD10_10.png";
                         }
                         //Plants
                         rndNum2 = Math.floor(Math.random() * 8) + 1;
@@ -805,28 +805,28 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                        document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                        document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png";
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_2.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_2.png";
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_3.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_3.png";
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_4.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_4.png";
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_5.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_5.png";
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_6.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_6.png";
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_7.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_7.png";
                         }
                         else {
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_8.png";
                         }
                         if(ind == LIMIT){
                             if((rndNum - rndNum2) == 0){
@@ -844,7 +844,7 @@
                             let sizeChange = (rndNum - rndNum2).toString();
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -875,22 +875,22 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                        document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                        document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png";
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_2.png";
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_3.png";
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_4.png";
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_5.png";
                         }
                         else {
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_6.png";
                         }
                         //Prey
                         rndNum2 = Math.floor(Math.random() * 6) + 1;
@@ -900,22 +900,22 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                        document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                        document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_1.png";
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_2.png";
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_3.png";
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_4.png";
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_5.png";
                         }
                         else{
-                            document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD6_6.png";
                         }
                         if(ind == LIMIT){
                             let youMod = document.getElementById("youMod");
@@ -948,7 +948,7 @@
                             let sizeChange = (rndNum - rndNum2).toString();
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -978,34 +978,34 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_1.png`;
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_2.png`;
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_3.png`;
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_4.png`;
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_5.png`;
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_6.png`;
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_7.png`;
                         }
                         else if (rndNum == 8){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_8.png`;
                         }
                         else if (rndNum == 9){
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_9.png`;
                         }
                         else {
-                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                            document.getElementById("img_green").src = `https://thanksgivingpoint.org/app/uploads/2022/01/greenD${yourDie}_10.png`;
                         }
                         //Plants
                         rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
@@ -1015,40 +1015,40 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_1.png`;
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_2.png`;
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_3.png`;
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_4.png`;
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_5.png`;
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_6.png`;
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_7.png`;
                         }
                         else if (rndNum2 == 8){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_8.png`;
                         }
                         else if (rndNum2 == 9){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_9.png`;
                         }
                         else if (rndNum2 == 10){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_10.png`;
                         }
                         else if (rndNum2 == 11){
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_11.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_11.png`;
                         }
                         else {
-                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_12.png`;
+                            document.getElementById("img_red").src = `https://thanksgivingpoint.org/app/uploads/2022/01/redD${theirDie}_12.png`;
                         }
                         if(ind == LIMIT){
                             if((rndNum - rndNum2) == 0){
@@ -1075,7 +1075,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -1103,28 +1103,28 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                        document.getElementById("img_green").src = "/IMG/dice/greenD8_1.png";
+                        document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_1.png";
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_2.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_2.png";
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_3.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_3.png";
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_4.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_4.png";
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_5.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_5.png";
                         }
                         else if (rndNum == 6){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_6.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_6.png";
                         }
                         else if (rndNum == 7){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_7.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_7.png";
                         }
                         else {
-                            document.getElementById("img_green").src = "/IMG/dice/greenD8_8.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD8_8.png";
                         }
                         //Plants
                         rndNum2 = Math.floor(Math.random() * 10) + 1;
@@ -1134,34 +1134,34 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                        document.getElementById("img_red").src = "/IMG/dice/redD10_1.png";
+                        document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_1.png";
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_2.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_2.png";
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_3.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_3.png";
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_4.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_4.png";
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_5.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_5.png";
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_6.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_6.png";
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_7.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_7.png";
                         }
                         else if (rndNum2 == 8){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_8.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_8.png";
                         }
                         else if (rndNum2 == 9){
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_9.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_9.png";
                         }
                         else {
-                            document.getElementById("img_red").src = "/IMG/dice/redD10_10.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD10_10.png";
                         }
                         if(ind == LIMIT){
                             if((rndNum - rndNum2) == 0){
@@ -1187,7 +1187,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
@@ -1215,22 +1215,22 @@
                         rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum_prev0 = rndNum;
                         if(rndNum == 1){
-                        document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                        document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_1.png";
                         }
                         else if (rndNum == 2){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_2.png";
                         }
                         else if (rndNum == 3){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_3.png";
                         }
                         else if (rndNum == 4){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_4.png";
                         }
                         else if (rndNum == 5){
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_5.png";
                         }
                         else {
-                            document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+                            document.getElementById("img_green").src = "https://thanksgivingpoint.org/app/uploads/2022/01/greenD6_6.png";
                         }
                         //Plants
                         rndNum2 = Math.floor(Math.random() * 8) + 1;
@@ -1240,28 +1240,28 @@
                         rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
                         rndNum2_prev0 = rndNum2;
                         if(rndNum2 == 1){
-                        document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                        document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_1.png";
                         }
                         else if (rndNum2 == 2){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_2.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_2.png";
                         }
                         else if (rndNum2 == 3){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_3.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_3.png";
                         }
                         else if (rndNum2 == 4){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_4.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_4.png";
                         }
                         else if (rndNum2 == 5){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_5.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_5.png";
                         }
                         else if (rndNum2 == 6){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_6.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_6.png";
                         }
                         else if (rndNum2 == 7){
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_7.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_7.png";
                         }
                         else{
-                            document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+                            document.getElementById("img_red").src = "https://thanksgivingpoint.org/app/uploads/2022/01/redD8_8.png";
                         }
                         if(ind == LIMIT){
                             let youMod = document.getElementById("youMod");
@@ -1307,7 +1307,7 @@
                             }
                             localStorage.setItem("sizeChange", sizeChange);
                             setTimeout(() =>{
-                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                                document.location.href = "https://thanksgivingpoint.org/16112/dice-game-show/";},2000);
                         }
                     }, (140 * ind)); //speed of rolls
                 })(i);
