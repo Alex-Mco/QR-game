@@ -115,21 +115,15 @@
                     document.getElementById("stayBtn").style.borderColor = "rgb(242,152,41)";
                 }      
                 else{
-                    if(document.title == "Mass Extinction" || document.title == "Mass Extinction Form" || document.title == "Mass Extinction Herbivore"){
                     document.body.style.backgroundColor = "rgb(1,28,38)";
                     document.body.style.color = "rgb(242,213,196)";
-                    if(document.title == "Mass Extinction"){
-                        document.getElementById("EvolveBtn").style.color = "white";
-                        document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
-                        document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
-                        document.getElementById("EvolveBtn").style.borderColor = "white";
-                        document.getElementById("stayBtn").style.borderColor = "white";
-                    }
-                    else{
-                        document.body.style.backgroundColor = "#D97823";
-                    }
+                    document.getElementById("EvolveBtn").style.color = "white";
+                    document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
+                    document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
+                    document.getElementById("EvolveBtn").style.borderColor = "white";
+                    document.getElementById("stayBtn").style.borderColor = "white";
                 }
-                }
+            }
             }
             function MassExtinction(){
                 /* Checks if Carnivore, if so goes straight to mass extinction form page, if not goes to mass extinction herbivore page, and sets plant type local storage 
