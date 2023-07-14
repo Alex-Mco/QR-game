@@ -2,13 +2,43 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/CSS/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mutation Game</title>
+        <style>
+            .show{
+                display: grid;
+            }
+            .hide{
+                display: none;
+            }
+            h1{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 35px;
+            }
+            body{
+                background-color: #D97823;
+                text-align: center;
+            }
+            div{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 25px;
+            }
+            p{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            #mutationTraits{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            #evolve_sections{
+                font-size: 20px;
+            }
+        </style>
     </head>
-    <body onload="CheckLocal();MutationChange();ReturnToColorPageWait()">
+    <body onload="CheckLocal();MutationChange()">
         <main id="evolve_sections">
             <section>
                 <h1>
@@ -17,11 +47,192 @@
             </section>
             <section id="mutationTraits">
                 <p id="TraitA">Trait A</p>
+                <img src="\IMG\Test_gif.gif">
                 <p id="TraitB">Trait B</p>
                 <p id="TraitC">Trait C</p>
+                <img src="\IMG\Test_gif.gif">
                 <p id="TraitD">Trait D</p>
             </section>
         </main>
-    <script src="/js/main.js"> </script>
+        <script>
+            function CheckLocal(){ 
+            /*This function checks the local storage to see if the stats are already populated there
+            if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+            This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+            if((localStorage.getItem("Habitat")) == null){
+                localStorage.setItem("Habitat","Land");
+                localStorage.setItem("Diet","Carnivore");
+                localStorage.setItem("Legs", "Four-Legs");
+                localStorage.setItem("Flight","Flightless");
+                localStorage.setItem("Size", "7");
+                localStorage.setItem("sizeWord", "Small");
+                localStorage.setItem("ExtinctModifier", "0");
+                localStorage.setItem("PageTitle", document.title);//
+                localStorage.setItem("yourDie", "0");
+                localStorage.setItem("theirDie", "0");
+            }
+            if((localStorage.getItem("Habitat")) == "Water"){
+                document.body.style.backgroundColor = "rgb(50,98,140)";
+                document.body.style.color = "rgb(242,213,196)";
+            }  
+            else{
+                document.body.style.backgroundColor = "#D97823";
+            }
+        }function MutationChange(){
+                /* always changes one random trait that is randomly decided in this function, cannot change the same two traits but CAN change up to two traits
+                (the second trait has a chance of rolling the same trait it already is and therefore does not change.) It then uses a wait function for a few seconds before 
+                changing to the coloring page*/
+                let legsVar = localStorage.getItem("Legs");
+                let dietVar = localStorage.getItem("Diet");
+                let habitatVar = localStorage.getItem("Habitat");
+                let flightVar = localStorage.getItem("Flight");
+                var randValPrev1;
+                var randValPrev2;
+                var LIMITMUTATION = 10;
+                var randomValTraitOne;
+                var randomValTraitTwo
+                let flipCoin;
+                for (var i=0;i<=LIMITMUTATION;i++){
+                    (function(ind) {
+                        setTimeout(function(){
+                            randomValTraitOne = Math.floor(Math.random() * 4);
+                            while (randomValTraitOne == randValPrev1) { //track the last two dice rolls...
+                                randomValTraitOne = Math.floor(Math.random() * 4); //...and prevent the current roll from landing on them
+                            }
+                            randValPrev1 = randomValTraitOne;
+                            switch(randomValTraitOne){
+                                case 0:
+                                    if(habitatVar == "Land"){
+                                        document.getElementById('TraitA').innerHTML = habitatVar;
+                                        document.getElementById('TraitB').innerHTML = "Water";
+                                        //localStorage.setItem('Habitat', 'Water');
+                                    }
+                                    else{
+                                        document.getElementById('TraitA').innerHTML = habitatVar;
+                                        document.getElementById('TraitB').innerHTML = "Land";
+                                        //localStorage.setItem('Habitat', 'Land');
+                                    }
+                                    break;
+                                case 1:
+                                    if(dietVar == "Carnivore"){
+                                        document.getElementById('TraitA').innerHTML = dietVar;
+                                        document.getElementById('TraitB').innerHTML = "Herbivore";
+                                        //localStorage.setItem('Diet', 'Herbivore');
+                                    }
+                                    else{
+                                        document.getElementById('TraitA').innerHTML = dietVar;
+                                        document.getElementById('TraitB').innerHTML = "Carnivore";
+                                        //localStorage.setItem('Diet', 'Carnivore');
+                                    }
+                                    break;
+                                case 2:
+                                    if(legsVar == "Two"){
+                                        document.getElementById('TraitA').innerHTML = legsVar;
+                                        document.getElementById('TraitB').innerHTML = "Four-Legs";
+                                        //localStorage.setItem('Legs', 'Four');
+                                    }
+                                    else{
+                                        document.getElementById('TraitA').innerHTML = legsVar;
+                                        document.getElementById('TraitB').innerHTML = "Two-Legs";
+                                        //localStorage.setItem('Legs', 'Two');
+                                    }
+                                    break;
+                                case 3:
+                                    if(flightVar == "Flightless"){
+                                        document.getElementById('TraitA').innerHTML = flightVar;
+                                        document.getElementById('TraitB').innerHTML = "Flighted";
+                                        //localStorage.setItem('Flight', 'Flighted');
+                                    }
+                                    else{
+                                        document.getElementById('TraitA').innerHTML = flightVar;
+                                        document.getElementById('TraitB').innerHTML = "Flightless";
+                                        //localStorage.setItem('Flight', 'Flightless');
+                                    }
+                                    break;
+                            }
+                            randomValTraitTwo = Math.floor(Math.random() * 4);
+                            flipCoin = Math.floor(Math.random() * 2);
+                            //Can Pass same value on both sides
+                            while (randomValTraitTwo == randomValTraitOne || randomValTraitTwo == randValPrev2) { //track the last two dice rolls...
+                                randomValTraitTwo = Math.floor(Math.random() * 4); //...and prevent the current roll from landing on them
+                            }
+                            randValPrev2 = randomValTraitTwo;
+                            switch(randomValTraitTwo){
+                                case 0:
+                                    document.getElementById('TraitC').innerHTML = habitatVar;
+                                    if(flipCoin == 1){
+                                        document.getElementById('TraitD').innerHTML = "Land";
+                                    }
+                                    else{
+                                        document.getElementById('TraitD').innerHTML = "Water";
+                                    }
+                                    break;
+                                case 1:
+                                    document.getElementById('TraitC').innerHTML = dietVar;
+                                    if(flipCoin == 1){
+                                        document.getElementById('TraitD').innerHTML = "Herbivore";
+                                    }
+                                    else{
+                                        document.getElementById('TraitD').innerHTML = "Carnivore";
+                                    }
+                                    break;
+                                case 2:
+                                    document.getElementById('TraitC').innerHTML = legsVar;
+                                    if(flipCoin == 1){
+                                        document.getElementById('TraitD').innerHTML = "Four-Legs";
+                                    }
+                                    else{
+                                        document.getElementById('TraitD').innerHTML = "Two-Legs";
+                                    }
+                                    break;
+                                case 3:
+                                    document.getElementById('TraitC').innerHTML = flightVar;
+                                    if(flipCoin == 1){
+                                        document.getElementById('TraitD').innerHTML = "Flighted";
+                                    }
+                                    else{
+                                        document.getElementById('TraitD').innerHTML = "Flightless";
+                                    }
+                                    break;
+                            }
+                            if(ind == LIMITMUTATION){
+                                switch(randomValTraitOne){
+                                    case 0:
+                                        localStorage.setItem('Habitat', document.getElementById('TraitB').innerHTML)
+                                        break;
+                                    case 1:
+                                        localStorage.setItem('Diet', document.getElementById('TraitB').innerHTML)
+                                        break;
+                                    case 2:
+                                        localStorage.setItem('Legs', document.getElementById('TraitB').innerHTML)
+                                        break;
+                                    case 3:
+                                        localStorage.setItem('Flight', document.getElementById('TraitB').innerHTML)
+                                        break;
+                                }
+                                switch(randomValTraitTwo){
+                                    case 0:
+                                        localStorage.setItem('Habitat', document.getElementById('TraitD').innerHTML)
+                                        break;
+                                    case 1:
+                                        localStorage.setItem('Diet', document.getElementById('TraitD').innerHTML)
+                                        break;
+                                    case 2:
+                                        localStorage.setItem('Legs', document.getElementById('TraitD').innerHTML)
+                                        break;
+                                    case 3:
+                                        localStorage.setItem('Flight', document.getElementById('TraitD').innerHTML)
+                                        break;
+                                }
+                            }
+                        }, (200 * ind)); //speed of rolls
+                    })(i);
+                }
+                setTimeout(() => {
+                    document.location.href='/QR-game_html/ColoringPage.html';}, 4000);
+                
+            }
+            
+        </script>
     </body>
 </html>

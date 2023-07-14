@@ -2,11 +2,97 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/CSS/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Feeding Game Permian</title>
+        <style>
+            .show{
+                display: grid;
+            }
+            .hide{
+                display: none;
+            }
+            h1{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 35px;
+            }
+            body{
+                background-color: #D97823;
+                text-align: center;
+            }
+            div{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 25px;
+            }
+            p{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            label{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            #feedingCarnivoreBtn{
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+            }
+            #feedingCarnivoreBtn > *{
+                padding:10px;
+                margin: 5px;
+                color: white;
+                border: 2px solid black;
+                box-shadow: 3px 3px black;
+                margin: 10px 10px; 
+                padding: 10px; 
+                font-size: 20px; 
+                background-color: #A6401B;
+            }
+            #feedingHerbivoreBtn{
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
+            #feedingHerbivoreBtn > *{
+                padding:10px;
+                margin: 5px;
+            }
+            #OptionA{
+                text-align: center;
+                flex-basis: 30%;
+                border: 2px solid black;
+                box-shadow: 3px 3px;
+                margin: 10px 0px;   
+                padding: 10px; 
+                font-size: 20px; 
+                background-color:#A6401B;
+            }
+            #OptionB{
+                text-align: center;
+                flex-basis: 30%;
+                border: 2px solid black;
+                box-shadow: 3px 3px;
+                margin: 10px 0px;  
+                padding: 10px; 
+                font-size: 20px; 
+                background-color: #A6401B;
+            }
+            #OptionC{
+                text-align: center;
+                flex-basis: 30%;
+                border: 2px solid black;
+                box-shadow: 3px 3px;
+                margin: 10px 0px;   
+                padding: 10px; 
+                font-size: 20px; 
+                background-color: #A6401B;
+            }
+            #animalTooBig{
+                font-size: 20px;
+                font-weight: bold;
+            }
+        </style>
     </head>
     <body onload="CheckLocal();FeedingPermian();FeedingGameLoad(); ">
         <main>
@@ -44,13 +130,162 @@
                     <button type="button" id="buttonA" onclick="SmallFeeding()">A - Attack!</button>
                     <button type="button" id="buttonB" onclick="MediumFeeding()">B - Attack!</button>
                     <button type="button" id="buttonC" onclick="LargeFeeding()">C - Attack!</button>
-                    <button type="button" id="buttonD" class="hide">D - Attack!</button>
                 </div>
                 <div>
                     <p id="animalTooBig"></p>
                 </div>
             </section>
         </main>
+        <script>
+            function CheckLocal(){
+                /*This function checks the local storage to see if the stats are already populated there
+                if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+                This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+                if((localStorage.getItem("Habitat")) == null){
+                    localStorage.setItem("Habitat","Land");
+                    localStorage.setItem("Diet","Carnivore");
+                    localStorage.setItem("Legs", "Four-Legs");
+                    localStorage.setItem("Flight","Flightless");
+                    localStorage.setItem("Size", "7");
+                    localStorage.setItem("sizeWord", "Small");
+                    localStorage.setItem("ExtinctModifier", "0");
+                    localStorage.setItem("PageTitle", document.title);//
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("theirDie", "0");
+                }
+                if((localStorage.getItem("Habitat")) == "Water"){
+                    document.body.style.backgroundColor = "rgb(50,98,140)";
+                    document.body.style.color = "rgb(242,213,196)";
+                    if((localStorage.getItem("Diet")) == "Herbivore"){
+                        document.getElementById("OptionA").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("OptionA").style.color = "white";
+                        document.getElementById("OptionA").style.borderColor = "black";
+                        document.getElementById("OptionA").style.boxShadow = "3px 3px rgb(1,28,38)";
+                        document.getElementById("OptionB").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("OptionB").style.color = "white";
+                        document.getElementById("OptionB").style.borderColor = "black";
+                        document.getElementById("OptionB").style.boxShadow = "3px 3px rgb(1,28,38)";
+                        document.getElementById("OptionC").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("OptionC").style.color = "white";
+                        document.getElementById("OptionC").style.borderColor = "black";
+                        document.getElementById("OptionC").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    }
+                    else{
+                        document.getElementById("buttonA").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("buttonA").style.color = "white";
+                        document.getElementById("buttonA").style.borderColor = "black";
+                        document.getElementById("buttonA").style.boxShadow = "3px 3px rgb(1,28,38)";
+                        document.getElementById("buttonB").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("buttonB").style.color = "white";
+                        document.getElementById("buttonB").style.borderColor = "black";
+                        document.getElementById("buttonB").style.boxShadow = "3px 3px rgb(1,28,38)";
+                        document.getElementById("buttonC").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("buttonC").style.color = "white";
+                        document.getElementById("buttonC").style.borderColor = "black";
+                        document.getElementById("buttonC").style.boxShadow = "3px 3px rgb(1,28,38)";
+                        document.getElementById("buttonD").style.backgroundColor = "rgb(25,70,180)";
+                        document.getElementById("buttonD").style.color = "white";
+                        document.getElementById("buttonD").style.borderColor = "black";
+                        document.getElementById("buttonD").style.boxShadow = "3px 3px rgb(1,28,38)";
+                    }
+                }
+                else{
+                    document.body.style.backgroundColor = "#D97823";
+                }
+            }function FeedingGameLoad(){
+                /*Hides and shows the different divs for the feeding games based on current stats.*/
+                let sizeVar = localStorage.getItem("Size");
+                let dietVar = localStorage.getItem("Diet");
+                localStorage.setItem("PageTitle", document.title);
+                if (dietVar == "Herbivore"){
+                    document.getElementById("feedCarnivore").classList.add("hide");
+                    document.getElementById("feedCarnivore").classList.remove("show");
+                    document.getElementById("feedHerbivore").classList.add("show");
+                    document.getElementById("feedHerbivore").classList.remove("hide");
+                }
+                else{
+                    document.getElementById("feedHerbivore").classList.add("hide");
+                    document.getElementById("feedHerbivore").classList.remove("show");
+                    document.getElementById("feedCarnivore").classList.add("show");
+                    document.getElementById("feedCarnivore").classList.remove("hide");
+                    if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+                        document.getElementById("carnivoreTextCretaceous").innerHTML = `Time to feed! As a small carnivore, 
+                        you are highly specialized to hunt other small prey.`
+                    }
+                    else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
+                        document.getElementById('carnivoreTextCretaceous').innerHTML = `Time to feed! As a medium carnivore, 
+                        you are best adapted to hunt smaller prey or prey your own size. While you may use pack 
+                        hunting or ambush to bring down prey larger than yourself, it is difficult and dangerous.`
+                    }
+                    else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
+                        document.getElementById('carnivoreTextCretaceous').innerHTML = `Time to feed! As a large carnivore,
+                        you are best adapted to hunt other large animals. 
+                        Small prey is nimble and difficult to catch, while colossal prey is too 
+                        formidable to risk.`
+                    }
+                    else if(Number(sizeVar) == 0){
+                        document.location.href='./DeathPage.html';
+                    }
+                    else{
+                        document.getElementById('carnivoreTextCretaceous').innerHTML = `Time to feed! As a colossal carnivore, 
+                        you prefer to feed on a wide array of smaller 
+                        animals. While you are capable of bringing down any animal, colossal prey 
+                        is usually not worth the risk. This feeding strategy is taken to the extreme 
+                        in baleen whales – the largest animal on Earth is sustained by eating billions 
+                        of tiny krill.`
+                    }
+                }
+            }
+            function thornyPlants(){
+                /*redirects to dice game page and changes local variable planttype to thorny*/
+                localStorage.setItem("plantType", "thorny");
+                document.location.href='./DiceGame.html';
+            }
+            function toxicPlants(){
+                /*redirects to dice game page and changes local variable planttype to toxic*/
+                localStorage.setItem("plantType", "toxic");
+                document.location.href='./DiceGame.html';
+            }
+            function fruitPlants(){
+                /*redirects to dice game page and changes local variable planttype to fruit*/
+                localStorage.setItem("plantType", "fruit");
+                document.location.href='./DiceGame.html';
+            }
+            function SmallFeeding(){
+                /*redirects to dice game page and changes the local variable preysize to small*/
+                document.location.href='./DiceGame.html';
+                localStorage.removeItem("PreySize");
+                localStorage.setItem("PreySize","Small");
+            }
+            function MediumFeeding(){
+                /*redirects to dice game page and changes the local variable preysize to medium*/
+                document.location.href='./DiceGame.html';
+                localStorage.removeItem("PreySize");
+                localStorage.setItem("PreySize","Medium");
+            }
+            function LargeFeeding(){
+                /*redirects to dice game page and changes the local variable preysize to large*/
+                document.location.href='./DiceGame.html';
+                localStorage.removeItem("PreySize");
+                localStorage.setItem("PreySize","Large");
+            }
+            function FeedingPermian(){
+                /*shows the different buttons (names of animals) for the feeding game permian based on current habitat, and diet stats.*/
+                let habitatVar = localStorage.getItem("Habitat");
+                let dietVar = localStorage.getItem("Diet");
+                if(dietVar == "Carnivore"){
+                    if(habitatVar == "Land"){
+                        document.getElementById("buttonA").innerHTML = "Dicynodont - Attack!";
+                        document.getElementById("buttonB").innerHTML = "Scutosaurus - Attack!";
+                        document.getElementById("buttonC").innerHTML = "Aulacephalodon - Attack!";
+                    }
+                    else{
+                        document.getElementById("buttonA").innerHTML = "Aenigamacaris - Attack!";
+                        document.getElementById("buttonB").innerHTML = "Mooreceras - Attack!";
+                        document.getElementById("buttonC").innerHTML = "Eurypterid - Attack!";
+                    }
+                }
+            }
+        </script>
     </body>
-    <script src="/js/main.js"> </script>
 </html>

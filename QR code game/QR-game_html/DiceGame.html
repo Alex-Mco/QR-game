@@ -2,14 +2,104 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/CSS/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dice Game</title>
+        <style>
+            .show{
+                display: grid;
+            }
+            .hide{
+                display: none;
+            }
+            h1{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 35px;
+            }
+            body{
+                background-color: #D97823;
+                text-align: center;
+            }
+            div{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 25px;
+            }
+            p{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            #dicePara{
+                position: relative;
+                display: grid;
+                column-gap: 10px;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-areas:
+                "greenD VS greenR";
+            }
+            #VSpara{
+                grid-area: VS;
+                display: inline-block;
+            }
+            #img_greenD6{
+                position: relative;
+                grid-area: greenD;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                width: 90%;
+                height: auto;
+            }
+            #img_redD6{
+                position: relative;
+                grid-area: greenR;
+                grid-column-start: 2;
+                grid-column-end: 3;
+                float: left;
+                width: 90%;
+                height: auto;
+            }
+            #slash1{
+                grid-area: slash;
+                position: absolute;
+                float: right;
+                width: 30%;
+                height: auto;
+                /* frame by frame link https://www.sitepoint.com/frame-by-frame-animation-css-javascript/*/
+            }
+            #slash2{
+                grid-area: slash;
+                position: absolute;
+                left: 70%;
+                width: 30%;
+                height: auto;
+            }
+            #diceMod{
+                position: relative;
+                display: grid;
+                column-gap: 10px;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .Bonus{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 20px;
+            }
+            #diceName{
+                position: relative;
+                display: grid;
+                column-gap: 10px;
+                grid-template-columns: repeat(3, 1fr);
+            }
+            #diceBtn{
+                margin: 10px;
+                width: 90%;
+                padding: 10px;
+                grid-column-start: 1;
+                grid-column-end: 3;
+            }
+        </style>
     </head>
-    <main>
-        <body onload="CheckLocal(); DiceGameChange();">
+    <body onload="CheckLocal(); DiceGameChange();">
+        <main>
             <div id="diceName">
                 <p id="youName">You</p>
                 <br>
@@ -23,13 +113,1207 @@
                 <img id="slash2" src="/IMG/dice/slash2.png" class="hide">
             </div>
             <div id="diceMod">
-                <p id="youMod"></p>
+                <p id="youMod" class="Bonus"></p>
                 <br>
-                <p id="themMod"></p>
+                <p id="themMod" class="Bonus"></p>
             </div>
             <button id="diceBtn" onclick="DiceGameCarnivore()">Attack!</button>
             <!-- fix dicegame CheckDead() function after dice game-->
-        <script src="/js/main.js"> </script>
-        </body>
-    </main>
+        </main>
+        <script>
+            function CheckLocal(){
+                /*This function checks the local storage to see if the stats are already populated there
+                if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+                This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+                if((localStorage.getItem("Habitat")) == null){
+                    localStorage.setItem("Habitat","Land");
+                    localStorage.setItem("Diet","Carnivore");
+                    localStorage.setItem("Legs", "Four-Legs");
+                    localStorage.setItem("Flight","Flightless");
+                    localStorage.setItem("Size", "7");
+                    localStorage.setItem("sizeWord", "Small");
+                    localStorage.setItem("ExtinctModifier", "0");
+                    localStorage.setItem("PageTitle", document.title);//
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("theirDie", "0");
+                }
+                if((localStorage.getItem("Habitat")) == "Water"){
+                    document.body.style.backgroundColor = "rgb(50,98,140)";
+                    document.body.style.color = "rgb(242,213,196)";
+                }
+                else{
+                    document.body.style.backgroundColor = "#D97823";
+                }
+            }
+            function DiceGameChange(){
+                /*Changes which function is executed when the button (either feed or attack) on the dice game is clicked, (according to the local storage diet variableas well as which page
+                they(the player) are coming from also affects which function is selected (either mass extinction or not)
+                and for herbivores the current plant type also affects the function selected). Also changes what dice are displayed according the both the current size of the player 
+                (and if applicable the current size of the prey they input from the form)*/
+                var sizeVar = localStorage.getItem("Size");
+                var pageTitle = localStorage.getItem("PageTitle");
+                let sizeVarNum = Number(sizeVar);
+                let dietVar = localStorage.getItem("Diet");
+                if(dietVar == "Carnivore"){
+                    document.getElementById("diceBtn").innerHTML = "Attack!";
+                    let theirSizeNum = localStorage.getItem("PreySize");
+                    if(pageTitle == "Mass Extinction Form"){
+                        //coming from the mass extinction
+                        document.getElementById("diceBtn").onclick = DiceGameCarnivoreExtinct;
+                    }
+                    else{
+                        //Comming from the feeding games
+                        document.getElementById("diceBtn").onclick = DiceGameCarnivore;
+                    }
+                    //NEED TO DO THEIR DICE
+                    if(sizeVarNum <= 0){//dead
+                        CheckDead();
+                        localStorage.setItem("yourDie", "0");
+                        localStorage.setItem("yourLoss", "0");
+                        document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                    }
+                    else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+                        localStorage.setItem("yourDie", "4");
+                        localStorage.setItem("yourLoss", "-4");
+                        document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                    }
+                    else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+                        localStorage.setItem("yourDie", "6");
+                        localStorage.setItem("yourLoss", "-6");
+                        document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                    }
+                    else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+                        localStorage.setItem("yourDie", "8");
+                        localStorage.setItem("yourLoss", "-8");
+                        document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                    }
+                    else{//colossal
+                        localStorage.setItem("yourDie", "10");
+                        localStorage.setItem("yourLoss", "-10");
+                        document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                    }
+                    switch(theirSizeNum){
+                        case "Small":
+                            localStorage.setItem("theirDie", "4");
+                            localStorage.setItem("yourGain", "4");
+                            document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                            break;
+                        case "Medium":
+                            localStorage.setItem("theirDie", "6");
+                            localStorage.setItem("yourGain", "6");
+                            document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                            break;
+                        case "Large":
+                            localStorage.setItem("theirDie", "8");
+                            localStorage.setItem("yourGain", "8");
+                            document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                            break;
+                        case "Colossal":
+                            localStorage.setItem("theirDie", "10");
+                            localStorage.setItem("yourGain", "10");
+                            document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                            break;
+                    }
+                }
+                else{
+                    document.getElementById("themName").innerHTML = "Plant";
+                    document.getElementById("diceBtn").innerHTML = "Feed!";
+                    let plantType = localStorage.getItem("plantType");
+                    if(pageTitle == "Mass Extinction Herbivore"){
+                        if(plantType == 'thorny'){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassThorny;
+                            if(sizeVarNum <= 0){//dead
+                                localStorage.setItem("yourDie", "0");
+                                localStorage.setItem("yourLoss", "0");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                localStorage.setItem("theirDie", "0");
+                                document.getElementById("img_red").src = `/IMG/dice/redD4_1.png`;
+                            }
+                            else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+                                localStorage.setItem("yourDie", "4");
+                                localStorage.setItem("yourLoss", "-4");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                                localStorage.setItem("theirDie", "6");
+                                document.getElementById("img_red").src = `/IMG/dice/redD6_1.png`;
+                            }
+                            else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+                                localStorage.setItem("yourDie", "6");
+                                localStorage.setItem("yourLoss", "-6");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                                localStorage.setItem("theirDie", "8");
+                                document.getElementById("img_red").src = `/IMG/dice/redD8_1.png`;
+                            }
+                            else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+                                localStorage.setItem("yourDie", "8");
+                                localStorage.setItem("yourLoss", "-8");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                                localStorage.setItem("theirDie", "10");
+                                document.getElementById("img_red").src = `/IMG/dice/redD10_1.png`;
+                            }
+                            else{//colossal
+                                localStorage.setItem("yourDie", "10");
+                                localStorage.setItem("yourLoss", "-10");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                                localStorage.setItem("theirDie", "12");
+                                document.getElementById("img_red").src = `/IMG/dice/redD12_1.png`;
+                            }
+                        }
+                        else if(plantType == 'toxic'){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_1.png";
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassToxic;
+                        }
+                        else if(plantType == 'fruit'){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreMassFruit;
+                        }
+                    }
+                    else{
+                        if(plantType == 'thorny'){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreThorny;
+                            if(sizeVarNum <= 0){//dead
+                                localStorage.setItem("yourDie", "0");
+                                localStorage.setItem("yourLoss", "0");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                            }
+                            else if(sizeVarNum > 0 && sizeVarNum <= 7){//small
+                                localStorage.setItem("yourDie", "4");
+                                localStorage.setItem("yourLoss", "-4");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD4_1.png`;
+                            }
+                            else if(sizeVarNum > 7 && sizeVarNum <= 14){//medium
+                                localStorage.setItem("yourDie", "6");
+                                localStorage.setItem("yourLoss", "-6");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD6_1.png`;
+                            }
+                            else if(sizeVarNum > 14 && sizeVarNum <= 21){//large
+                                localStorage.setItem("yourDie", "8");
+                                localStorage.setItem("yourLoss", "-8");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD8_1.png`;
+                            }
+                            else{//colossal
+                                localStorage.setItem("yourDie", "10");
+                                localStorage.setItem("yourLoss", "-10");
+                                document.getElementById("img_green").src = `/IMG/dice/greenD10_1.png`;
+                            }
+                        }
+                        else if(plantType == 'toxic'){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD10_1.png";
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreToxic;
+                        }
+                        else{
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                            document.getElementById("diceBtn").onclick = DiceGameHerbivoreFruit;
+                        }
+                    }
+                }
+            }
+            function DiceGameCarnivore(){
+                /*Random dice roll for standard carnivore dice game, the dice are affected current player size, and the size of the prey they are trying to attack. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var yourDie = localStorage.getItem("yourDie");
+                var theirDie = localStorage.getItem("theirDie");
+                var sizeVarString = localStorage.getItem("SizeWord");
+                var preySizeVar = localStorage.getItem("PreySize");
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(() =>{
+                        //Player
+                        rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                        }
+                        else if (rndNum == 8){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                        }
+                        else if (rndNum == 9){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                        }
+                        //Prey
+                        rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                        }
+                        else if (rndNum2 == 8){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                        }
+                        else if (rndNum2 == 9){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                        }
+                        if(ind == LIMIT){
+                            //apply modifiers, play animations, and pass values
+                            let youMod = document.getElementById("youMod");
+                            let themMod = document.getElementById("themMod");
+                            switch(sizeVarString){
+                                case "Small":
+                                    if(preySizeVar == "Small"){
+                                        rndNum += 1;
+                                        youMod.innerHTML = "Bonus + 1";
+                                    }
+                                    break;
+                                case "Medium":
+                                    if(preySizeVar == "Medium"){
+                                        rndNum += 1;
+                                        youMod.innerHTML = "Bonus + 1";
+                                    }
+                                    break;
+                                case "Large":
+                                    if(preySizeVar == "Small"){
+                                        //apply +0 modifier 
+                                        rndNum += -1;
+                                        themMod.innerHTML = "Bonus + 1";
+                                    }
+                                    else if(preySizeVar == "Large"){
+                                        rndNum += 2;
+                                        youMod.innerHTML = "Bonus + 2";
+                                    }
+                                    break;
+                            }
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            let yourLoss = localStorage.getItem("yourLoss");
+                            let yourGain = localStorage.getItem("yourGain");
+                            if(sizeChange <=0){//lower than 0 (loose)
+                                if(sizeChange <=  Number(yourLoss)){
+                                    sizeChange = yourLoss;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            else{//higher than 0 (win)
+                                if(sizeChange >= Number(yourGain)){
+                                    sizeChange = yourGain;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameCarnivoreExtinct(){
+                /*Random dice roll for extinction carnivore dice game, the dice are affected current player size, and the size of the prey they are trying to attack. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var yourDie = localStorage.getItem("yourDie");
+                var theirDie = localStorage.getItem("theirDie");
+                var extinctModifier = localStorage.getItem("ExtinctModifier");
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2; 
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                        }
+                        else if (rndNum == 8){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                        }
+                        else if (rndNum == 9){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                        }
+                        //Prey
+                        rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                        }
+                        else if (rndNum2 == 8){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                        }
+                        else if (rndNum2 == 9){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                        }
+                        if(ind == LIMIT){
+                            //apply modifiers, play animations, and pass values
+                            let youMod = document.getElementById("youMod");
+                            let themMod = document.getElementById("themMod");
+                            if(extinctModifier <= 0){
+                                themMod.innerHTML = "Bonus + " + extinctModifier.toString();
+                            }
+                            else{
+                                youMod.innerHTML = "Bonus + " + extinctModifier.toString();
+                            }
+                            rndNum += Number(extinctModifier);
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            let yourLoss = localStorage.getItem("yourLoss");
+                            let yourGain = localStorage.getItem("yourGain");
+                            if(sizeChange <=0){//lower than 0 (loose)
+                                if(sizeChange <=  Number(yourLoss)){
+                                    sizeChange = yourLoss;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            else{//higher than 0 (win)
+                                if(sizeChange >= Number(yourGain)){
+                                    sizeChange = yourGain;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreThorny(){
+                /*Random dice roll for standard thorny herbivore dice game, the player die is affected current player size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var sizeVar = localStorage.getItem("Size");
+                var yourDie = localStorage.getItem("yourDie");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                        }
+                        else if (rndNum == 8){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                        }
+                        else if (rndNum == 9){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                        }
+                        //Prey
+                        rndNum2 = Math.floor(Math.random() * 6) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                        document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+                        }
+                        else{
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+                        }
+                        if(ind == LIMIT){
+                            let youMod = document.getElementById("youMod");
+                            if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+                                rndNum += 0;
+                            }
+                            else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
+                                rndNum += 1;
+                                youMod.innerHTML = "Bonus + 1";
+                            }
+                            else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
+                                rndNum += 2;
+                                youMod.innerHTML = "Bonus + 2";
+                            }
+                            else if(Number(sizeVar) == 0){
+                                document.location.href='./DeathPage.html';
+                            }
+                            else{
+                                rndNum += 3;
+                                youMod.innerHTML = "Bonus + 3";
+                            }
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            let yourLoss = localStorage.getItem("yourLoss");
+                            if(sizeChange <= 0){//lower than 0 (loose)
+                                if(sizeChange <=  Number(yourLoss)){
+                                    sizeChange = yourLoss;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            else{
+                                sizeChange = sizeChange.toString();
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreToxic(){
+                /*Random dice roll for standard toxic herbivore dice game, the player die is affected current player size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                //d10 vs d8
+                //increase size by how much you win
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * 10) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * 10) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                        document.getElementById("img_green").src = "greenD10_1.png";
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = "greenD10_2.png";
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = "greenD10_3.png";
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = "greenD10_4.png";
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = "greenD10_5.png";
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = "greenD10_6.png";
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = "greenD10_7.png";
+                        }
+                        else if (rndNum == 8){
+                            document.getElementById("img_green").src = "greenD10_8.png";
+                        }
+                        else if (rndNum == 9){
+                            document.getElementById("img_green").src = "greenD10_9.png";
+                        }
+                        else {
+                            document.getElementById("img_green").src = "greenD10_10.png";
+                        }
+                        //Plants
+                        rndNum2 = Math.floor(Math.random() * 8) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * 8) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                        document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_2.png";
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_3.png";
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_4.png";
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_5.png";
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_6.png";
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_7.png";
+                        }
+                        else {
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+                        }
+                        if(ind == LIMIT){
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2).toString();
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreFruit(){
+                /*Random dice roll for standard fruit herbivore dice game, the player die is affected current player size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                //apply size modifier based on time period.
+                //Scales with time period 1/2/3 0/1/2?
+                //increase size by how much you win
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * 6) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                        document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                        }
+                        else {
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+                        }
+                        //Prey
+                        rndNum2 = Math.floor(Math.random() * 6) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                        document.getElementById("img_red").src = "/IMG/dice/redD6_1.png";
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_2.png";
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_3.png";
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_4.png";
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_5.png";
+                        }
+                        else{
+                            document.getElementById("img_red").src = "/IMG/dice/redD6_6.png";
+                        }
+                        if(ind == LIMIT){
+                            let youMod = document.getElementById("youMod");
+                            var feedingTitle = document.getElementById("feedingTitle");
+                            switch(feedingTitle){
+                                case 'Permian':
+                                    rndNum += 0;
+                                    break
+                                case 'Jurassic':
+                                    rndNum += 1;
+                                    youMod.innerHTML = "Bonus + 1";
+                                    break
+                                case 'Cretaceous':
+                                    rndNum += 2;
+                                    youMod.innerHTML = "Bonus + 2";
+                                    break
+                            }
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2).toString();
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreMassThorny(){
+                /*Random dice roll for extinction thorny herbivore dice game, both dice are affected by the players current size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var yourDie = localStorage.getItem("yourDie");
+                var theirDie = localStorage.getItem("theirDie");
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * Number(yourDie)) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * Number(yourDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_1.png`;
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_2.png`;
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_3.png`;
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_4.png`;
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_5.png`;
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_6.png`;
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_7.png`;
+                        }
+                        else if (rndNum == 8){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_8.png`;
+                        }
+                        else if (rndNum == 9){
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_9.png`;
+                        }
+                        else {
+                            document.getElementById("img_green").src = `/IMG/dice/greenD${yourDie}_10.png`;
+                        }
+                        //Plants
+                        rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * Number(theirDie)) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_1.png`;
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_2.png`;
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_3.png`;
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_4.png`;
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_5.png`;
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_6.png`;
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_7.png`;
+                        }
+                        else if (rndNum2 == 8){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_8.png`;
+                        }
+                        else if (rndNum2 == 9){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_9.png`;
+                        }
+                        else if (rndNum2 == 10){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_10.png`;
+                        }
+                        else if (rndNum2 == 11){
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_11.png`;
+                        }
+                        else {
+                            document.getElementById("img_red").src = `/IMG/dice/redD${theirDie}_12.png`;
+                        }
+                        if(ind == LIMIT){
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            let yourLoss = localStorage.getItem("yourLoss");
+                            if(sizeChange <=0){//lower than 0 (loose)
+                                if(sizeChange <=  Number(yourLoss)){
+                                    sizeChange = yourLoss;
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreMassToxic(){
+                /*Random dice roll for extinction toxic herbivore dice game, both dice are affected by the players current size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * 8) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * 8) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                        document.getElementById("img_green").src = "/IMG/dice/greenD8_1.png";
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_2.png";
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_3.png";
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_4.png";
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_5.png";
+                        }
+                        else if (rndNum == 6){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_6.png";
+                        }
+                        else if (rndNum == 7){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_7.png";
+                        }
+                        else {
+                            document.getElementById("img_green").src = "/IMG/dice/greenD8_8.png";
+                        }
+                        //Plants
+                        rndNum2 = Math.floor(Math.random() * 10) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * 10) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                        document.getElementById("img_red").src = "/IMG/dice/redD10_1.png";
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_2.png";
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_3.png";
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_4.png";
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_5.png";
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_6.png";
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_7.png";
+                        }
+                        else if (rndNum2 == 8){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_8.png";
+                        }
+                        else if (rndNum2 == 9){
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_9.png";
+                        }
+                        else {
+                            document.getElementById("img_red").src = "/IMG/dice/redD10_10.png";
+                        }
+                        if(ind == LIMIT){
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            if(sizeChange <=0){//lower than 0 (loose)
+                                if(sizeChange <= -8){//schwing magic
+                                    sizeChange = "-8";
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+            function DiceGameHerbivoreMassFruit(){
+                /*Random dice roll for extinction fruit herbivore dice game, both dice are affected by the players current size. 
+                This is also the function where the slashes, bonuses, and the change in size are applied. Set timeout function before being redirected to the dice game show page.*/
+                var sizeVar = localStorage.getItem("Size");
+                var rndNum;
+                var rndNum_prev0;
+                var rndNum_prev1;
+                var rndNum2;
+                var rndNum2_prev0;
+                var rndNum2_prev1;
+                var LIMIT = 12;
+                for (var i=0;i<=LIMIT;i++) {
+                (function(ind) {
+                    setTimeout(function(){
+                        //Player
+                        rndNum = Math.floor(Math.random() * 6) + 1;
+                        while (rndNum == rndNum_prev0 || rndNum == rndNum_prev1) { //track the last two dice rolls...
+                            rndNum = Math.floor(Math.random() * 6) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum_prev1 = rndNum_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum_prev0 = rndNum;
+                        if(rndNum == 1){
+                        document.getElementById("img_green").src = "/IMG/dice/greenD6_1.png";
+                        }
+                        else if (rndNum == 2){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_2.png";
+                        }
+                        else if (rndNum == 3){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_3.png";
+                        }
+                        else if (rndNum == 4){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_4.png";
+                        }
+                        else if (rndNum == 5){
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_5.png";
+                        }
+                        else {
+                            document.getElementById("img_green").src = "/IMG/dice/greenD6_6.png";
+                        }
+                        //Plants
+                        rndNum2 = Math.floor(Math.random() * 8) + 1;
+                        while (rndNum2 == rndNum2_prev0 || rndNum2 == rndNum2_prev1) { //track the last two dice rolls...
+                            rndNum2 = Math.floor(Math.random() * 8) + 1; //...and prevent the current roll from landing on them
+                        }
+                        rndNum2_prev1 = rndNum2_prev0; //fake random looks more random than real random: AKA the iPod Shuffle Dilemma
+                        rndNum2_prev0 = rndNum2;
+                        if(rndNum2 == 1){
+                        document.getElementById("img_red").src = "/IMG/dice/redD8_1.png";
+                        }
+                        else if (rndNum2 == 2){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_2.png";
+                        }
+                        else if (rndNum2 == 3){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_3.png";
+                        }
+                        else if (rndNum2 == 4){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_4.png";
+                        }
+                        else if (rndNum2 == 5){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_5.png";
+                        }
+                        else if (rndNum2 == 6){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_6.png";
+                        }
+                        else if (rndNum2 == 7){
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_7.png";
+                        }
+                        else{
+                            document.getElementById("img_red").src = "/IMG/dice/redD8_8.png";
+                        }
+                        if(ind == LIMIT){
+                            let youMod = document.getElementById("youMod");
+                            let themMod = document.getElementById("themMod");
+                            if(Number(sizeVar) > 0 && Number(sizeVar) <= 7){
+                                rndNum += 1;
+                                youMod.innerHTML = "Bonus + 1";
+                            }
+                            else if(Number(sizeVar) >= 8 && Number(sizeVar) <= 14){
+                                rndNum += 0;
+                                youMod.innerHTML = "Bonus + 0";
+                            } 
+                            else if(Number(sizeVar) >= 15 && Number(sizeVar) <= 21){
+                                rndNum -= 1;
+                                youMod.innerHTML = "Bonus - 1";
+                            }
+                            else if(Number(sizeVar) == 0){
+                                document.location.href='./DeathPage.html';
+                            }
+                            else{
+                                rndNum -= 2;
+                            }
+                            if((rndNum - rndNum2) == 0){
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.add("hide");
+                            }
+                            else if((rndNum - rndNum2) < 0){
+                                document.getElementById("slash2").classList.add("hide");
+                                document.getElementById("slash1").classList.remove("hide");
+                            }
+                            else{
+                                document.getElementById("slash1").classList.add("hide");
+                                document.getElementById("slash2").classList.remove("hide");
+                            }
+                            let sizeChange = (rndNum - rndNum2);
+                            if(sizeChange <=0){//lower than 0 (loose)
+                                if(sizeChange <= -6){//schwing magic
+                                    sizeChange = "-6";
+                                }
+                                else{
+                                    sizeChange = sizeChange.toString();
+                                }
+                            }
+                            localStorage.setItem("sizeChange", sizeChange);
+                            setTimeout(() =>{
+                                document.location.href = "/QR-game_html/DiceGameShow.html";},2000);
+                        }
+                    }, (140 * ind)); //speed of rolls
+                })(i);
+                }
+            }
+        </script>
+    </body>
+    
 </html>

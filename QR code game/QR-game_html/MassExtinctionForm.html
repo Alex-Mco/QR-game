@@ -2,94 +2,434 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/CSS/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mass Extinction Form</title>
+        <style>
+            .show{
+                display: grid;
+            }
+            .hide{
+                display: none;
+            }
+            h1{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 35px;
+            }
+            body{
+                background-color: #D97823;
+                text-align: center;
+            }
+            div{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 25px;
+            }
+            p{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            label{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            #FormHeaders{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 25px;
+            }
+            .StatSection div{
+                text-align: center;
+                flex: 50%;
+            }
+            #sizeSelect{
+                text-align: center;
+                flex: 100%;
+            }
+            #ModifierWL{
+                padding: 0px 5px;
+            }
+            #ModifierCH{
+                padding: 0px 5px;
+            }
+            #ModifierFY{
+                padding: 0px 5px;
+            }
+            #ModifierCam{
+                padding: 0px 5px;
+            }
+            #submitBtn{
+                padding:10px;
+                margin: 5px;
+                color: white;
+                border: 2px solid rgb(242,100,48);
+                box-shadow: 3px 3px rgb(242,100,48);
+                margin: 25px 10px; 
+                padding: 10px; 
+                font-size: 15px; 
+                background-color: rgb(140,28,3);
+            }
+            #evolve_sections{
+                font-size: 20px;
+            }
+        </style>
     </head>
     <body onload="CheckLocal(); MassExtinctionSize(); MassExtinctionFormHabitat(); MassExtinctionDiet(); MassExtinctionFlight(); MassExtinctionCamo();">
         <main>
-            <section id="MassExtinctionGame" class="hide/show">
-    <section id="Herbivore" class="hide">
-        Your animal has lost size due to the scarcity of food!
-    </section>
-    <section class="Carnivore" class="show">
-        <p>With so little food available, you will need to turn on each other.
-        Enter the stats of another animal in your group to see if you can attack it!</p>
-        <section class="StatSection">
-            <div id="sizeSelect">
-                <h1 id="FormHeaders"><b>Select Size:</b></h1>
-                <input type="radio" id="small" name="size" value="Small" onclick="MassExtinctionSize()"></input>
-                <label for="small">Small</label>
-                <input type="radio" id="medium" name="size" value="Medium" onclick="MassExtinctionSize()"></input>
-                <label for="medium">Medium</label>
-                <input type="radio" id="large" name="size" value="Large" checked onclick="MassExtinctionSize()"></input>
-                <label for="large">Large</label>
-                <input type="radio" id="colossal" name="size" value="Colossal" onclick="MassExtinctionSize()"></input>
-                <label for="colossal">Colossal</label>
-                
-            </div>
-            <div id="habitatSelect">
-                <p id="FormHeaders"><b>Water or Land?</b></p>
-                <p id="ModifierWL"></p>
-                <div>
-                    <input type="radio" id="water" name="habitat" value="Water" checked onclick="MassExtinctionFormHabitat()"></input>
-                    <label for="water">Water</label>
+            <section class="Carnivore" class="show">
+                <p>With so little food available, you will need to turn on each other.
+                Enter the stats of another animal in your group to see if you can attack it!</p>
+                <section class="StatSection">
+                    <div id="sizeSelect">
+                        <h1 id="FormHeaders"><b>Select Size:</b></h1>
+                        <input type="radio" id="small" name="size" value="Small" onclick="MassExtinctionSize()"></input>
+                        <label for="small">Small</label>
+                        <input type="radio" id="medium" name="size" value="Medium" onclick="MassExtinctionSize()"></input>
+                        <label for="medium">Medium</label>
+                        <input type="radio" id="large" name="size" value="Large" checked onclick="MassExtinctionSize()"></input>
+                        <label for="large">Large</label>
+                        <input type="radio" id="colossal" name="size" value="Colossal" onclick="MassExtinctionSize()"></input>
+                        <label for="colossal">Colossal</label>
+                        
+                    </div>
+                    <div id="habitatSelect">
+                        <p id="FormHeaders"><b>Water or Land?</b></p>
+                        <p id="ModifierWL"></p>
+                        <div>
+                            <input type="radio" id="water" name="habitat" value="Water" checked onclick="MassExtinctionFormHabitat()"></input>
+                            <label for="water">Water</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="land" name="habitat" value="Land" onclick="MassExtinctionFormHabitat()"></input>
+                            <label for="land">Land</label>
+                        </div>
+                    </div>
+                    <div id="dietSelect">
+                        <p id="FormHeaders"><b>Carnivore or Herbivore?</b></p>
+                        <p id="ModifierCH"></p>
+                        <div>
+                            <input type="radio" id="dietCarnivore" name="diet" value="Carnivore" checked onclick="MassExtinctionDiet()"></input>
+                            <label for="Carnivore">Carnivore</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="dietHerbivore" name="diet" value="Herbivore" onclick="MassExtinctionDiet()"></input>
+                            <label for="Herbivore">Herbivore</label>
+                        </div>
+                    </div>
+                    <div  id="flightSelect">
+                        <h1 id="FormHeaders"><b>Flightless or Flying?</b></h1>
+                        <p id="ModifierFY"></p>
+                        <div>
+                            <input type="radio" id="Flightless" name="flight" value="Flightless" checked onclick="MassExtinctionFlight()"></input>
+                            <label for="Flightless">Flightless</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="Flying" name="flight" value="Flying" onclick="MassExtinctionFlight()"></input>
+                            <label for="Flying">Flying</label>
+                        </div>
+                    </div>
+                    <div  id="camoSelect">
+                        <p id="FormHeaders"><b>Is The Animal Camouflaged?</b></p>
+                        <p>(Does your animal blend in with the exhibit?)<br></p>
+                        <p id="ModifierCam"></p>
+                        <div>
+                            <input type="radio" id="camo" name="camo" value="Yes" onclick="MassExtinctionCamo()"></input>
+                            <label for="camo">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="NoCamo" name="camo" value="No" checked onclick="MassExtinctionCamo()"></input>
+                            <label for="NoCamo">No</label>
+                        </div>
+                    </div>
+                </section>
+                <div id="submitBtnAttack">
+                    <button type="button" id="submitBtn" onclick="submitMassExtinctionForm()">Attack!</button>
                 </div>
                 <div>
-                    <input type="radio" id="land" name="habitat" value="Land" onclick="MassExtinctionFormHabitat()"></input>
-                    <label for="land">Land</label>
+                    <p id="animalTooBig"></p>
                 </div>
-            </div>
-            <div id="dietSelect">
-                <p id="FormHeaders"><b>Carnivore or Herbivore?</b></p>
-                <p id="ModifierCH"></p>
-                <div>
-                    <input type="radio" id="dietCarnivore" name="diet" value="Carnivore" checked onclick="MassExtinctionDiet()"></input>
-                    <label for="Carnivore">Carnivore</label>
-                </div>
-                <div>
-                    <input type="radio" id="dietHerbivore" name="diet" value="Herbivore" onclick="MassExtinctionDiet()"></input>
-                    <label for="Herbivore">Herbivore</label>
-                </div>
-            </div>
-            <div  id="flightSelect">
-                <h1 id="FormHeaders"><b>Flightless or Flying?</b></h1>
-                <p id="ModifierFY"></p>
-                <div>
-                    <input type="radio" id="Flightless" name="flight" value="Flightless" checked onclick="MassExtinctionFlight()"></input>
-                    <label for="Flightless">Flightless</label>
-                </div>
-                <div>
-                    <input type="radio" id="Flying" name="flight" value="Flying" onclick="MassExtinctionFlight()"></input>
-                    <label for="Flying">Flying</label>
-                </div>
-            </div>
-            <div  id="camoSelect">
-                <p id="FormHeaders"><b>Is The Animal Camouflaged?</b></p>
-                <p>(Does your animal blend in with the exhibit?)<br></p>
-                <p id="ModifierCam"></p>
-                <div>
-                    <input type="radio" id="camo" name="camo" value="Yes" onclick="MassExtinctionCamo()"></input>
-                    <label for="camo">Yes</label>
-                </div>
-                <div>
-                    <input type="radio" id="NoCamo" name="camo" value="No" checked onclick="MassExtinctionCamo()"></input>
-                    <label for="NoCamo">No</label>
-                </div>
-            </div>
-        </section>
-        <div id="submitBtnAttack">
-            <button type="button" id="submitBtn" onclick="submitMassExtinctionForm()">Attack!</button>
-        </div>
-        <div>
-            <p id="animalTooBig"></p>
-        </div>
-</section>
+            </section>
         </main>
+        <script>
+            let habitatVar = localStorage.getItem("Habitat");
+            let sizeVarString = localStorage.getItem("sizeWord");
+            let dietVar = localStorage.getItem("Diet");
+            let flightVar = localStorage.getItem("Flight");
+            var sizeModifier = 0;//
+            var habitatModifier = 0;//
+            var dietModifier = 0;//
+            var flightModifier = 0;//
+            var camoModifier = 0;//
+            function CheckLocal(){
+                /*This function checks the local storage to see if the stats are already populated there
+                if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+                This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+                if((localStorage.getItem("Habitat")) == null){
+                    localStorage.setItem("Habitat","Land");
+                    localStorage.setItem("Diet","Carnivore");
+                    localStorage.setItem("Legs", "Four-Legs");
+                    localStorage.setItem("Flight","Flightless");
+                    localStorage.setItem("Size", "7");
+                    localStorage.setItem("sizeWord", "Small");
+                    localStorage.setItem("ExtinctModifier", "0");
+                    localStorage.setItem("PageTitle", document.title);//
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("theirDie", "0");
+                }
+                if((localStorage.getItem("Habitat")) == "Water"){
+                    document.body.style.backgroundColor = "rgb(1,28,38)";
+                    document.body.style.color = "rgb(242,213,196)";
+                    if((localStorage.getItem("Diet")) == "Herbivore"){
+                        document.getElementById("OptionA").style.backgroundColor = "rgb(140,28,3)";
+                        document.getElementById("OptionA").style.color = "white";
+                        document.getElementById("OptionA").style.borderColor = "rgb(140,28,3)";
+                        document.getElementById("OptionB").style.backgroundColor = "rgb(140,28,3)";
+                        document.getElementById("OptionB").style.color = "white";
+                        document.getElementById("OptionB").style.borderColor = "white";
+                        document.getElementById("OptionC").style.backgroundColor = "rgb(140,28,3)";
+                        document.getElementById("OptionC").style.color = "white";
+                        document.getElementById("OptionC").style.borderColor = "white";
+                    }
+                    if(document.title == "Mass Extinction" || document.title == "Mass Extinction Form" || document.title == "Mass Extinction Herbivore"){
+                    document.body.style.backgroundColor = "rgb(1,28,38)";
+                    document.body.style.color = "rgb(242,213,196)";
+                    if(document.title == "Mass Extinction"){
+                        document.getElementById("EvolveBtn").style.color = "white";
+                        document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
+                        document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
+                        document.getElementById("EvolveBtn").style.borderColor = "white";
+                        document.getElementById("stayBtn").style.borderColor = "white";
+                    }
+                    if(document.title == "Mass Extinction Herbivore"){
+                        document.getElementById("OptionA").style.color = "white";
+                        document.getElementById("OptionB").style.color = "white";
+                        document.getElementById("OptionC").style.color = "white";
+                    }
+                    }
+                    else{
+                        document.body.style.backgroundColor = "rgb(50,98,140)";
+                    }
+                }
+                else{
+                    if(document.title == "Mass Extinction" || document.title == "Mass Extinction Form" || document.title == "Mass Extinction Herbivore"){
+                    document.body.style.backgroundColor = "rgb(1,28,38)";
+                    document.body.style.color = "rgb(242,213,196)";
+                    if(document.title == "Mass Extinction"){
+                        document.getElementById("EvolveBtn").style.color = "white";
+                        document.getElementById("EvolveBtn").style.backgroundColor = "rgb(140,28,3)";
+                        document.getElementById("stayBtn").style.backgroundColor = "rgb(80,37,18)";
+                        document.getElementById("EvolveBtn").style.borderColor = "white";
+                        document.getElementById("stayBtn").style.borderColor = "white";
+                    }
+                    if(document.title == "Mass Extinction Herbivore"){
+                        document.getElementById("OptionA").style.color = "white";
+                        document.getElementById("OptionB").style.color = "white";
+                        document.getElementById("OptionC").style.color = "white";
+                    }
+                    }
+                    else{
+                        document.body.style.backgroundColor = "#D97823";
+                    }
+                }
+            }
+            function MassExtinctionSize(){
+                /*Checks the size input on the radio button on the mass extinction form and then applies the correct modifer to the global vairable sizeModifier.
+                also sets the local storage variable preysize to the appropriate size. */
+                var sizeRadios = document.getElementsByName('size');
+                for (var radio of sizeRadios){
+                    if(radio.checked){
+                        if(sizeVarString == radio.value){
+                            switch(sizeVarString){
+                                case "Small":
+                                    sizeModifier = 1;
+                                    localStorage.setItem("PreySize", "Small");
+                                    break;
+                                case "Medium":
+                                    sizeModifier = 1;
+                                    localStorage.setItem("PreySize", "Medium");
+                                    break;
+                                case "Large":
+                                    sizeModifier = 2;
+                                    localStorage.setItem("PreySize", "Large");
+                                    break;
+                                case "Colossal":
+                                    localStorage.setItem("PreySize", "Colossal");
+                                    break;
+                            }
+                        }
+                        else{
+                            switch(sizeVarString){
+                                case "Small":
+                                    switch(radio.value){
+                                        case "Medium":
+                                            localStorage.setItem("PreySize", "Medium");
+                                            break;
+                                        case "Large":
+                                            localStorage.setItem("PreySize", "Large");
+                                            break;
+                                        case "Colossal":
+                                            localStorage.setItem("PreySize", "Colossal");
+                                            break;
+                                    }
+                                    break;
+                                case "Medium":
+                                    switch(radio.value){
+                                        case "Small":
+                                            localStorage.setItem("PreySize", "Small");
+                                            break;
+                                        case "Large":
+                                            localStorage.setItem("PreySize", "Large");
+                                            break;
+                                        case "Colossal":
+                                            localStorage.setItem("PreySize", "Colossal");
+                                            break;
+                                    }
+                                    break;
+                                case "Large":
+                                    switch(radio.value){
+                                        case "Small":
+                                            sizeModifier = -1;
+                                            localStorage.setItem("PreySize", "Small");
+                                            break
+                                        case "Medium":
+                                            localStorage.setItem("PreySize", "Medium");
+                                            break
+                                        case "Colossal":
+                                            localStorage.setItem("PreySize", "Colossal");
+                                            break
+                                    }
+                                    break;
+                                case "Colossal":
+                                    switch(radio.value){
+                                        case "Small":
+                                            localStorage.setItem("PreySize", "Small");
+                                            break
+                                        case "Medium":
+                                            localStorage.setItem("PreySize", "Medium");
+                                            break
+                                        case "Large":
+                                            localStorage.setItem("PreySize", "Large");
+                                            break
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            function MassExtinctionFormHabitat(){
+                /*Checks the habitat input on the radio button on the mass extinction form changes the text by the habitat input on the form according to what is input 
+                and what the persons current habitat is. Also applies the appropriate modifer to global variable habitatModifier */
+                var habitatRadios = document.getElementsByName('habitat');
+                for (var radio of habitatRadios){
+                    if(radio.checked){
+                        if(habitatVar == radio.value){
+                            if(habitatVar == "Water"){
+                                document.getElementById("ModifierWL").innerHTML = "You are well adapted to hunt other animals in your preferred habitat.";
+                                habitatModifier = 0;
+                            }
+                            else{
+                                document.getElementById("ModifierWL").innerHTML = "You are well adapted to hunt other animals in your preferred habitat.";
+                                habitatModifier = 0;
+                            }
+                        }
+                        else{
+                            if(habitatVar == "Water"){
+                                document.getElementById("ModifierWL").innerHTML = "Water animals can ambush land animals when they drink.";
+                                habitatModifier = 0;
+                            }
+                            else{
+                                document.getElementById("ModifierWL").innerHTML = "-1! Water animals are difficult for land animals to catch!";
+                                habitatModifier = -1;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            function MassExtinctionDiet(){
+                /*Checks the diet input on the radio button on the mass extinction form changes the text by the diet input on the form according to what is input 
+                and what the persons current diet is. Also checks habitat and applies changes accordingly.
+                Also applies the appropriate modifer to global variable dietModifier */
+                var dietRadios = document.getElementsByName('diet');
+                for (var radio of dietRadios){
+                    if(radio.checked){
+                        //automatically carnivore
+                        if(radio.value == "Herbivore"){
+                            document.getElementById("ModifierCH").innerHTML = "While herbivores might have defensive structures, like horns or armor, they are less heavily armed than carnivores."
+                            dietModifier = 0; 
+                        }
+                        else{
+                            if(habitatVar == 'Water'){
+                                document.getElementById("ModifierCH").innerHTML = "Most aquatic animals are carnivorous, so you are well adapted to hunt other carnivores."
+                                dietModifier = 0; 
+                            }
+                            else{
+                                document.getElementById("ModifierCH").innerHTML = "-1! Carnivores are well-armed with sharp claws and teeth!"
+                                dietModifier = -1;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            function MassExtinctionFlight(){
+                /*Checks the flight input on the radio button on the mass extinction form changes the text by the flight input on the form according to what is input 
+                and what the persons current flight is. Also applies the appropriate modifer to global variable flightModifier */
+                var flightRadios = document.getElementsByName('flight');
+                for (var radio of flightRadios){
+                    if(radio.checked){
+                        if(flightVar == radio.value){
+                            if(flightVar == "Flightless"){
+                                document.getElementById("ModifierFY").innerHTML = "You are well adapted to hunt other flightless animals."
+                                flightModifier = 0;
+                            }
+                            else{
+                                document.getElementById("ModifierFY").innerHTML = "Some flying animals, like falcons and Harpactognathus, are specially adapted to catch prey on the wing."
+                                flightModifier = 0;
+                            }
+                        }
+                        else{
+                            if(flightVar == "Flightless"){
+                                document.getElementById("ModifierFY").innerHTML = "-2! Flying animals are much more difficult for flightless animals to catch!"
+                                flightModifier = -1;
+                            }
+                            else{
+                                document.getElementById("ModifierFY").innerHTML = "Flying animals are lightly built, but can use their flight to ambush and outmaneuver terrestrial prey – using hunting strategies like dragging prey off cliffs."
+                                flightModifier = 0;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            function MassExtinctionCamo(){
+                /*Checks the camo input on the radio button on the mass extinction form changes the text by the camo input on the form according to what is input.
+                Also applies the appropriate modifer to global variable camoModifier */
+                var camoRadios = document.getElementsByName('camo');
+                for (var radio of camoRadios){
+                    if(radio.checked){
+                        if(radio.value == "No"){
+                            document.getElementById("ModifierCam").innerHTML = "Animals without camaoflage must rely on their speed, ferocity, and intimidation to survive."
+                            camoModifier = 0;
+                        }
+                        else{
+                            document.getElementById("ModifierCam").innerHTML = "-1! Camouflaged animals are good at hiding from predators."
+                            camoModifier = -1;
+                        }
+                        break;
+                    }
+                }
+            }
+            function submitMassExtinctionForm(){
+                /*"Submits" the mass extinction form, does so by setting the page title local storage variable with the pages title, then pulls 
+                all modifiers (size, habitat, etc) into one variable and sets that to local storage variable ExtinctModifer. Redirects to the dice game page */
+                localStorage.setItem("PageTitle", document.title)
+                var extinctNum = (sizeModifier + habitatModifier + dietModifier + flightModifier + camoModifier).toString()
+                localStorage.setItem("ExtinctModifier", extinctNum);
+                document.location.href='./DiceGame.html';
+            }
+        </script>
     </body>
-    <script src="/js/main.js"> </script>
 </html>
 
 
