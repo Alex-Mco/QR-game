@@ -79,7 +79,7 @@
                     /*This is the function executed after the dice game is done, shows the change in the size bar according to the "amount" of size gained or lost from the dice game
                     after a timeout function it redirects to the coloring page*/
                     let sizeBar = localStorage.getItem("Size");
-                    document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar_${sizeBar}.png`;
+                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${sizeBar}.png`;
                     let sizeChange = Number(localStorage.getItem("sizeChange"));
                     var increment = 0;
                     if((sizeChange) < 0){
@@ -92,7 +92,7 @@
                         for(let i = Number(sizeBar); i >= increment; i--){
                             (function(ind){
                                 setTimeout(function(){
-                                    document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar_${i}.png`;
+                                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
                                 }, 2000 - (140 * ind));
                             })(i);//MIGHT NEED TO FIX THIS
                         }
@@ -102,15 +102,15 @@
                             increment = 28;
                         }
                         else if(sizeChange == 1){//SCHWING MAGIC
-                            document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar_${sizeBar}.png`;
+                            document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
                             setTimeout(function(){
-                                document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar_${Number(sizeBar)+1}.png`;
+                                document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${Number(sizeBar)+1}.png`;
                                 let sizeText = (Number(sizeBar)+1)
                                 localStorage.setItem("Size", sizeText.toString());
                                 sizeWordChange();
                                 setTimeout(() => {
                                     CheckDead();
-                                    document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
+                                    document.location.href='https://thanksgivingpoint.org/16112/coloring-page/';}, 1000 * Math.abs(sizeChange));
                             }, 280);
                         }
                         else{
@@ -119,7 +119,7 @@
                         for(let i = Number(sizeBar); i <= increment; i++){
                             (function(ind){
                                 setTimeout(function(){
-                                    document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar_${i}.png`;
+                                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
                                 }, (140 * ind));
                             })(i);
                         }
@@ -129,13 +129,13 @@
                     sizeWordChange()
                     //setTimeout(() => {
                     //        CheckDead();
-                    //        document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
+                    //        document.location.href='https://thanksgivingpoint.org/16112/coloring-page/';}, 1000 * Math.abs(sizeChange));
                     }
                 function CheckDead(){
                     /* Checks if the size variable is lower than or equal to zero and redirects to death page*/
                     let sizeVar = localStorage.getItem("Size");
                     if(Number(sizeVar) <= 0){
-                        document.location.href='./DeathPage.html';
+                        document.location.href='https://thanksgivingpoint.org/16112/death-page/';
                     }
                 }
                 function sizeWordChange(){
