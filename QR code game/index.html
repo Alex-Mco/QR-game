@@ -2,24 +2,91 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/CSS/styles.css">
         <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-        <script href="/js/main.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Introduction Page</title>
+        <style>
+            .show{
+                display: grid;
+            }
+            .hide{
+                display: none;
+            }
+            h1{
+                font-family: 'IM Fell English SC', serif;
+                font-size: 35px;
+            }
+            body{
+                background-color: #D97823;
+                text-align: center;
+            }
+            div{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 25px;
+            }
+            p{
+                font-family: 'Lato', Helvetica, sans-serif;
+                font-size: 20px;
+            }
+            #startBtn{
+                margin: 15px 0px; 
+                padding: 10px;
+                font-size: 15px;
+                box-shadow: 3px 3px;
+                color: white;
+                border: 2px solid black;
+                background-color:#011C26;
+            }
+            #introImg{
+                width: 80%;
+            }
+            #introText{
+                margin: 5px;
+            }
+        </style>
     </head>
     <body onload="ClearLocal();">
-        <h1>Re-Evolution</h1>
-        <p>
-            Make choices to survive, compete with friends, and learn how real-life animals evolved over time. 
-            Will you rule the land or seas? Will you be a strong and sturdy herbivore or a fearsome predator? 
-            In Re-Evolution, you decide your fate! Play across millions of years while you venture through the Museum of Ancient Life.
-        </p>
-        <section>
-            <br>
-            <button type="button" id="startBtn" class="startBtn" onclick="CheckLocal();StartGame()">Start!</button>
-        </section>
+        <main>
+            <h1>Re-Evolution</h1>
+            <img id="introImg" src="/IMG/testImg1.jpg">
+            <p id="introText">
+                Make choices to survive, compete with friends, and learn how real-life animals evolved over time. 
+                Will you rule the land or seas? Will you be a strong and sturdy herbivore or a fearsome predator? 
+                In Re-Evolution, you decide your fate! Play across millions of years while you venture through the Museum of Ancient Life.
+            </p>
+            <section>
+                <br>
+                <button type="button" id="startBtn" class="startBtn" onclick="CheckLocal();StartGame()">Start!</button>
+            </section>
+        </main>
+        <script>
+            function ClearLocal(){
+                /*This clears the local storage */
+                localStorage.clear();
+                document.body.style.backgroundColor = "#D97823";
+            }
+            function CheckLocal(){
+                /*This function checks the local storage to see if the stats are already populated there
+                if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+                This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+                if((localStorage.getItem("Habitat")) == null){
+                    localStorage.setItem("Habitat","Water");
+                    localStorage.setItem("Diet","Carnivore");
+                    localStorage.setItem("Legs", "Four-Legs");
+                    localStorage.setItem("Flight","Flightless");
+                    localStorage.setItem("Size", "7");
+                    localStorage.setItem("sizeWord", "Small");
+                    localStorage.setItem("ExtinctModifier", "0");
+                    localStorage.setItem("PageTitle", document.title);//
+                    localStorage.setItem("yourDie", "0");
+                    localStorage.setItem("theirDie", "0");
+                }
+            }
+            function StartGame(){
+                /* Starts the game by redirecting to the coloring page*/
+                document.location.href = '/QR-game_html/ColoringPage.html';
+            }
+        </script>
     </body>
-    <script src="/js/main.js"> </script>
 </html>
