@@ -30,17 +30,14 @@
                 font-size: 20px;
             }
             #sizeBarDiv{
-                display: flex;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
                 justify-content: center;
             }
             #sizeBarIMG{
-                background-color: rgb(165, 170, 189);
                 border-radius: 25px;
                 width: 95%;
-                position: absolute;
-                display: block;
                 margin: auto;
-                top:20%;
             }
         </style>
     <main>
@@ -50,114 +47,108 @@
                 <img id="sizeBarIMG">
             </div>
             <div></div>
-            <script>
-                function CheckLocal(){
-                /*This function checks the local storage to see if the stats are already populated there
-                if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
-                This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
-                if((localStorage.getItem("Habitat")) == null){
-                    localStorage.setItem("Habitat","Land");
-                    localStorage.setItem("Diet","Carnivore");
-                    localStorage.setItem("Legs", "Four-Legs");
-                    localStorage.setItem("Flight","Flightless");
-                    localStorage.setItem("Size", "7");
-                    localStorage.setItem("sizeWord", "Small");
-                    localStorage.setItem("ExtinctModifier", "0");
-                    localStorage.setItem("PageTitle", document.title);//
-                    localStorage.setItem("yourDie", "0");
-                    localStorage.setItem("theirDie", "0");
-                }
-                if((localStorage.getItem("Habitat")) == "Water"){
-                    document.body.style.backgroundColor = "rgb(50,98,140)";
-                    document.body.style.color = "rgb(242,213,196)";
+        <script>
+            function CheckLocal(){
+            /*This function checks the local storage to see if the stats are already populated there
+            if they arent it populates the following stats: Habitat, Diet, Legs, Flight, Size, Size word, ExtinctModifer, pagetitle, yourdie, theirdie.
+            This function also checks if the animal is a water animal or a land animal and changes the colors accordingly.*/
+            if((localStorage.getItem("Habitat")) == null){
+                localStorage.setItem("Habitat","Land");
+                localStorage.setItem("Diet","Carnivore");
+                localStorage.setItem("Legs", "Four-Legs");
+                localStorage.setItem("Flight","Flightless");
+                localStorage.setItem("Size", "7");
+                localStorage.setItem("sizeWord", "Small");
+                localStorage.setItem("ExtinctModifier", "0");
+                localStorage.setItem("PageTitle", document.title);//
+                localStorage.setItem("yourDie", "0");
+                localStorage.setItem("theirDie", "0");
+            }
+            if((localStorage.getItem("Habitat")) == "Water"){
+                document.body.style.backgroundColor = "rgb(50,98,140)";
+                document.body.style.color = "rgb(242,213,196)";
+            }
+            else{
+                document.body.style.backgroundColor = "#D97823";
+            }
+            }
+            function DiceGameShow(){
+                /*This is the function executed after the dice game is done, shows the change in the size bar according to the "amount" of size gained or lost from the dice game
+                after a timeout function it redirects to the coloring page*/
+                let sizeBar = localStorage.getItem("Size");
+                document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar-${sizeBar}.png`;
+                let sizeChange = Number(localStorage.getItem("sizeChange"));
+                var increment = 0;
+                if((sizeChange) < 0){
+                    if((Number(sizeBar) + sizeChange) <= 0){
+                        increment = 0;
+                    }
+                    else{
+                        increment = (Number(sizeBar) + sizeChange);
+                    }
+                    for(let i = Number(sizeBar); i >= increment; i--){
+                        (function(ind){
+                            setTimeout(function(){
+                                document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar-${i}.png`;
+                            }, 2000 - (140 * ind));
+                        })(i);//MIGHT NEED TO FIX THIS
+                    }
+                    if(increment == 0){
+                        document.location.href='./DeathPage.html';
+                    }
                 }
                 else{
-                    document.body.style.backgroundColor = "#D97823";
+                    if((Number(sizeBar) + sizeChange) >= 28){
+                        increment = 28;
+                    }
+                    else if(sizeChange == 1){//SCHWING MAGIC
+                        document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar-${sizeBar}.png`;
+                        setTimeout(function(){
+                            document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar-${Number(sizeBar)+1}.png`;
+                            let sizeText = (Number(sizeBar)+1)
+                            localStorage.setItem("Size", sizeText.toString());
+                            sizeWordChange();
+                            setTimeout(() => {
+                                document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
+                        }, 280);
+                    }
+                    else{
+                        increment = (Number(sizeBar) + sizeChange);
+                    }
+                    for(let i = Number(sizeBar); i <= increment; i++){
+                        (function(ind){
+                            setTimeout(function(){
+                                document.getElementById("sizeBarIMG").src = `/IMG/sizebar/sizebar-${i}.png`;
+                            }, (140 * ind));
+                        })(i);
+                    }
+                }
+                let sizeText = increment.toString();
+                localStorage.setItem("Size", sizeText);
+                sizeWordChange()
+                setTimeout(() => {
+                    document.location.href='/QR-game_html/ColoringPage.html';}, 1000 * Math.abs(sizeChange));
+                }
+            function sizeWordChange(){
+                /* Changes the SizeWord local variable based on the size local variable*/
+                let sizebar = localStorage.getItem("Size");
+                if (Number(sizebar) <= 0){
+                    localStorage.setItem("SizeWord", "Dead");
+                }
+                else if(Number(sizebar) > 0 && Number(sizebar) <= 7){
+                    localStorage.setItem("SizeWord", "Small");
+                }
+                else if(Number(sizebar) > 7 && Number(sizebar) <= 14){
+                    localStorage.setItem("SizeWord", "Medium");
+                }
+                else if(Number(sizebar) > 14 && Number(sizebar) <= 21){
+                    localStorage.setItem("SizeWord", "Large");
+                }
+                else{
+                    localStorage.setItem("SizeWord", "Colossal");
                 }
             }
-                function DiceGameShow(){
-                    /*This is the function executed after the dice game is done, shows the change in the size bar according to the "amount" of size gained or lost from the dice game
-                    after a timeout function it redirects to the coloring page*/
-                    let sizeBar = localStorage.getItem("Size");
-                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${sizeBar}.png`;
-                    let sizeChange = Number(localStorage.getItem("sizeChange"));
-                    var increment = 0;
-                    if((sizeChange) < 0){
-                        if((Number(sizeBar) + sizeChange) <= 0){
-                            increment = 0;
-                        }
-                        else{
-                            increment = (Number(sizeBar) + sizeChange);
-                        }
-                        for(let i = Number(sizeBar); i >= increment; i--){
-                            (function(ind){
-                                setTimeout(function(){
-                                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
-                                }, 2000 - (140 * ind));
-                            })(i);//MIGHT NEED TO FIX THIS
-                        }
-                    }
-                    else{
-                        if((Number(sizeBar) + sizeChange) >= 28){
-                            increment = 28;
-                        }
-                        else if(sizeChange == 1){//SCHWING MAGIC
-                            document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
-                            setTimeout(function(){
-                                document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${Number(sizeBar)+1}.png`;
-                                let sizeText = (Number(sizeBar)+1)
-                                localStorage.setItem("Size", sizeText.toString());
-                                sizeWordChange();
-                                setTimeout(() => {
-                                    CheckDead();
-                                    document.location.href='https://thanksgivingpoint.org/16112/coloring-page/';}, 1000 * Math.abs(sizeChange));
-                            }, 280);
-                        }
-                        else{
-                            increment = (Number(sizeBar) + sizeChange);
-                        }
-                        for(let i = Number(sizeBar); i <= increment; i++){
-                            (function(ind){
-                                setTimeout(function(){
-                                    document.getElementById("sizeBarIMG").src = `https://thanksgivingpoint.org/app/uploads/2022/01/sizebar${i}.png`;
-                                }, (140 * ind));
-                            })(i);
-                        }
-                    }
-                    let sizeText = increment.toString();
-                    localStorage.setItem("Size", sizeText);
-                    sizeWordChange()
-                    //setTimeout(() => {
-                    //        CheckDead();
-                    //        document.location.href='https://thanksgivingpoint.org/16112/coloring-page/';}, 1000 * Math.abs(sizeChange));
-                    }
-                function CheckDead(){
-                    /* Checks if the size variable is lower than or equal to zero and redirects to death page*/
-                    let sizeVar = localStorage.getItem("Size");
-                    if(Number(sizeVar) <= 0){
-                        document.location.href='https://thanksgivingpoint.org/16112/death-page/';
-                    }
-                }
-                function sizeWordChange(){
-                    /* Changes the SizeWord local variable based on the size local variable*/
-                    let sizebar = localStorage.getItem("Size");
-                    if (Number(sizebar) <= 0){
-                        localStorage.setItem("SizeWord", "Dead");
-                    }
-                    else if(Number(sizebar) > 0 && Number(sizebar) <= 7){
-                        localStorage.setItem("SizeWord", "Small");
-                    }
-                    else if(Number(sizebar) > 7 && Number(sizebar) <= 14){
-                        localStorage.setItem("SizeWord", "Medium");
-                    }
-                    else if(Number(sizebar) > 14 && Number(sizebar) <= 21){
-                        localStorage.setItem("SizeWord", "Large");
-                    }
-                    else{
-                        localStorage.setItem("SizeWord", "Colossal");
-                    }
-                }
-                </script>
+            </script>
         </body>
     </main>
 </html>
